@@ -1,5 +1,7 @@
 # OptiQuake Local
 
+[![PyPI version](https://img.shields.io/pypi/v/optiquake-local.svg)](https://pypi.org/project/optiquake-local/) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23004638.svg)](https://doi.org/10.5281/zenodo.23004638) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](LICENSE)
+
 Experimental local optical vibration detection using an ordinary high-frame-rate webcam.
 
 **Author:** Lic. Juan Esteban Ramírez<br>
@@ -21,6 +23,16 @@ This validates **vibration observability**, not earthquake classification, predi
 - UVC webcam; experimentally tested with Insta360 Link
 
 No OpenCV or NumPy is required.
+
+## Install from PyPI
+```powershell
+python -m pip install optiquake-local
+optiquake-local --self-test
+```
+
+Published package: `https://pypi.org/project/optiquake-local/`
+
+Citable archive: DOI `10.5281/zenodo.23004638` (project) and `10.5281/zenodo.23004639` (v0.1.1-experimental).
 
 ## Run
 ```powershell

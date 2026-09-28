@@ -27,3 +27,10 @@ The project is not a certified seismometer, earthquake predictor or guaranteed e
 - AGPL-3.0-only copyleft licensing
 
 See the repository README, validation notes and contribution guide for installation and research details.
+
+## Install
+`python -m pip install optiquake-local`
+
+PyPI: https://pypi.org/project/optiquake-local/
+
+Project DOI: https://doi.org/10.5281/zenodo.23004638
