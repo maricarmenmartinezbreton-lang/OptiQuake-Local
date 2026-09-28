@@ -1,0 +1,26 @@
+name: Feature request
+description: Propose a new capability or integration
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What limitation or user need does this address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed approach
+      description: Describe hardware, software, API, sensor, AI integration, or algorithm changes.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation plan
+      description: Explain how the change can be tested reproducibly and how false positives will be measured.
+    validations:
+      required: true

@@ -54,3 +54,11 @@ The skill emits structured JSONL events and deliberately reports `vibration`, no
 
 See `docs/AI_SKILL_INTEGRATION.md` for the integration contract.
 
+
+## Contributing
+
+OptiQuake Local is designed to be improved by the community. See `CONTRIBUTING.md`, `GOVERNANCE.md`, and `ROADMAP.md` before submitting changes.
+
+Developers can fork the repository, create focused branches, and propose pull requests. New hardware adapters and AI integrations should preserve the public JSON event contract whenever practical.
+
+Experimental vibration events must not be presented as confirmed earthquakes or guaranteed early warnings without appropriate validation.
