@@ -4,9 +4,9 @@ OptiQuake Local should be published where developers, researchers, search engine
 
 ## Primary distribution
 1. Public GitHub repository with topics, releases and GitHub Pages.
-2. Python package distribution on PyPI after a separate PyPI authorization.
-3. Zenodo archival of tagged releases to obtain a DOI and citable research record.
-4. Software Heritage archival for long-term source preservation and persistent identifiers.
+2. Python package distribution on PyPI: published as `optiquake-local`.
+3. Zenodo archival of tagged releases: enabled; project DOI `10.5281/zenodo.23004638`.
+4. Software Heritage archival: automatic GitHub push webhook enabled for long-term source preservation.
 
 ## Machine discovery
 - `codemeta.json` for structured research-software metadata.
