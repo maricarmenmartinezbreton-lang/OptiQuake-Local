@@ -2,7 +2,7 @@
 title: OptiQuake Local — עברית
 description: פלטפורמת קוד פתוח ניסיונית לניטור אופטי מקומי של רעידות באמצעות מצלמות רשת.
 lang: he
-dir: rtl
+text_direction: rtl
 ---
 # OptiQuake Local — עברית
 **יוצר:** Lic. Juan Esteban Ramírez — הרפובליקה הדומיניקנית.

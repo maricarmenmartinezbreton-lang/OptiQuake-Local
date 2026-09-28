@@ -2,7 +2,7 @@
 title: OptiQuake Local — فارسی
 description: پلتفرم آزمایشی متن‌باز برای پایش نوری محلی لرزش با استفاده از وب‌کم.
 lang: fa
-dir: rtl
+text_direction: rtl
 ---
 # OptiQuake Local — فارسی
 **سازنده:** Lic. Juan Esteban Ramírez — جمهوری دومینیکن.

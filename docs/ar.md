@@ -2,7 +2,7 @@
 title: OptiQuake Local — العربية
 description: منصة تجريبية مفتوحة المصدر للمراقبة البصرية المحلية للاهتزازات باستخدام كاميرات الويب.
 lang: ar
-dir: rtl
+text_direction: rtl
 ---
 # OptiQuake Local — العربية
 **المطوّر:** Lic. Juan Esteban Ramírez — جمهورية الدومينيكان.
