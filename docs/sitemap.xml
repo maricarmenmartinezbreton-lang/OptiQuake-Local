@@ -1,16 +1,241 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/</loc></url>
-  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html</loc></url>
-  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html</loc></url>
-  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html</loc></url>
-  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html</loc></url>
-  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html</loc></url>
-  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-cn.html</loc></url>
-  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html</loc></url>
-  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html</loc></url>
-  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html</loc></url>
-  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html</loc></url>
-  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html</loc></url>
-  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/llms.txt</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/en.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hans.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hant.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"/>
+  </url>
+  <url>
+    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/en.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/en.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hans.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hant.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"/>
+  </url>
+  <url>
+    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/en.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hans.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hant.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"/>
+  </url>
+  <url>
+    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/en.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hans.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hant.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"/>
+  </url>
+  <url>
+    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/en.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hans.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hant.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"/>
+  </url>
+  <url>
+    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/en.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hans.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hant.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"/>
+  </url>
+  <url>
+    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/en.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hans.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hant.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"/>
+  </url>
+  <url>
+    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/en.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hans.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hant.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"/>
+  </url>
+  <url>
+    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/en.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hans.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hant.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"/>
+  </url>
+  <url>
+    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hans.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/en.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hans.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hant.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"/>
+  </url>
+  <url>
+    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hant.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/en.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hans.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hant.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"/>
+  </url>
+  <url>
+    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/en.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hans.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hant.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"/>
+  </url>
+  <url>
+    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/en.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hans.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hant.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"/>
+  </url>
+  <url>
+    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/en.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hans.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-hant.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"/>
+  </url>
 </urlset>
