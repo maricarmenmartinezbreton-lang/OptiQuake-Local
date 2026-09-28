@@ -1,0 +1,25 @@
+﻿{
+  "name": "optiquake-local",
+  "version": "0.1.0-experimental",
+  "author": "Lic. Juan Esteban Ramírez",
+  "license": "MIT",
+  "kind": "local-sensor-skill",
+  "runtime": "python3",
+  "entrypoint": "src/optiquake.py",
+  "transport": "jsonl-stdout",
+  "default_camera": "Insta360 Link",
+  "default_fps": 60,
+  "capabilities": [
+    "local-vibration-monitoring",
+    "adaptive-baseline",
+    "event-streaming",
+    "multi-sensor-correlation-ready"
+  ],
+  "limitations": [
+    "experimental",
+    "not-a-certified-seismometer",
+    "not-standalone-earthquake-confirmation",
+    "windows-directshow-mvp"
+  ]
+}
+

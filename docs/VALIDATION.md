@@ -1,4 +1,4 @@
-# Initial validation record
+﻿# Initial validation record
 
 Date: 2026-09-27  
 Platform: Windows / PC2-ULTRA-PRO  
@@ -21,3 +21,4 @@ Microphone observations were exploratory and are not used as a trigger in v0.1.0
 
 ## Interpretation
 The setup demonstrated that webcam-derived frame differences can strongly separate deliberate mechanical motion from a quiet interval. This is proof of **vibration observability**, not proof of seismic-event specificity.
+

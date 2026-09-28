@@ -1,8 +1,8 @@
-# OptiQuake Local
+﻿# OptiQuake Local
 
 Experimental local optical vibration detection using an ordinary high-frame-rate webcam.
 
-**Author:** Lic. Esteban Ramirez  
+**Author:** Lic. Juan Esteban Ramírez  
 **Origin:** Dominican Republic, 27 September 2026  
 **Version:** 0.1.0-experimental  
 **License:** MIT
@@ -45,3 +45,12 @@ The MVP processes frames locally and does not save video. It emits numeric vibra
 4. Add optional low-frequency microphone features.
 5. Support multiple physically separated nodes.
 6. Publish false-positive/false-negative metrics before any earthquake-classification claim.
+
+## AI skill
+
+The repository also includes `skill/SKILL.md` and `skill/manifest.json` so OptiQuake Local can be consumed as a reusable sensor skill by AI agents and automation projects.
+
+The skill emits structured JSONL events and deliberately reports `vibration`, not `earthquake`, unless a separate corroboration layer confirms the event.
+
+See `docs/AI_SKILL_INTEGRATION.md` for the integration contract.
+

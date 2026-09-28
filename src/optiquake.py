@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """OptiQuake Local - experimental optical vibration detector.
-Author: Lic. Esteban Ramirez | License: MIT
+Author: Lic. Juan Esteban Ramírez | License: MIT
 """
 import argparse, collections, json, shutil, statistics, subprocess, time
 
@@ -80,3 +80,4 @@ if __name__ == "__main__":
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
     self_test() if args.self_test else run(args)
+
