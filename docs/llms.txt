@@ -10,6 +10,7 @@ Primary resources:
 - PyPI: https://pypi.org/project/optiquake-local/
 - Documentation: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/
 - Project DOI: https://doi.org/10.5281/zenodo.23004638
+- Current release DOI: https://doi.org/10.5281/zenodo.23005112
 - Release DOI: https://doi.org/10.5281/zenodo.23004639
 
 Capabilities:

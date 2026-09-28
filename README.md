@@ -34,7 +34,7 @@ optiquake-local --self-test
 
 Published package: `https://pypi.org/project/optiquake-local/`
 
-Citable archive: project DOI `10.5281/zenodo.23004638`; Zenodo assigns a version DOI to each archived release.
+Citable archive: project DOI `10.5281/zenodo.23004638`; v0.1.2-experimental DOI `10.5281/zenodo.23005112`.
 
 ## Run
 ```powershell
