@@ -1,6 +1,7 @@
 ---
 title: OptiQuake Local — 한국어
 description: 웹캠을 이용한 로컬 광학 진동 모니터링을 위한 오픈소스 실험 플랫폼입니다.
+lang: ko
 ---
 # OptiQuake Local — 한국어
 **개발자:** Lic. Juan Esteban Ramírez — 도미니카 공화국.

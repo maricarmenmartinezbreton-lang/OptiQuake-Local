@@ -1,6 +1,7 @@
 ---
 title: OptiQuake Local — Français
 description: Plateforme expérimentale open source de surveillance optique locale des vibrations à l'aide de webcams.
+lang: fr
 ---
 # OptiQuake Local — Français
 **Créateur :** Lic. Juan Esteban Ramírez — République dominicaine.

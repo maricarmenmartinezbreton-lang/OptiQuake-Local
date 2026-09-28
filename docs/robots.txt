@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/sitemap.xml

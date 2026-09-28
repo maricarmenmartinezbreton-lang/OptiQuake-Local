@@ -36,3 +36,6 @@ Language pages:
 - العربية: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html
 - हिन्दी: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html
 - Русский: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html
+
+Localized overviews: English, Spanish, Portuguese, French, German, Italian, Japanese, Korean, Simplified Chinese, Traditional Chinese, Arabic, Hindi, Russian, Turkish, Indonesian, Vietnamese, Dutch, Polish, Ukrainian, Thai, Bengali, Persian, Hebrew, Swahili, and Malay.
+Languages index: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/languages.html

@@ -1,6 +1,7 @@
 ---
 title: OptiQuake Local — 简体中文
 description: 使用网络摄像头进行本地光学振动监测的开源实验平台。
+lang: zh-Hans
 ---
 # OptiQuake Local — 简体中文
 **创建者：** Lic. Juan Esteban Ramírez — 多米尼加共和国。

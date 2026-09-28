@@ -1,6 +1,7 @@
 ---
 title: OptiQuake Local — हिन्दी
 description: वेबकैम का उपयोग करके स्थानीय ऑप्टिकल कंपन निगरानी के लिए ओपन-सोर्स प्रयोगात्मक प्लेटफ़ॉर्म।
+lang: hi
 ---
 # OptiQuake Local — हिन्दी
 **निर्माता:** Lic. Juan Esteban Ramírez — डोमिनिकन गणराज्य।

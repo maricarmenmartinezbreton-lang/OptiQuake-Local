@@ -1,6 +1,7 @@
 ---
 title: OptiQuake Local — 日本語
 description: ウェブカメラを使用した局所的な光学振動監視のためのオープンソース実験プラットフォーム。
+lang: ja
 ---
 # OptiQuake Local — 日本語
 **開発者:** Lic. Juan Esteban Ramírez — ドミニカ共和国。

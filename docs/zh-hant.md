@@ -1,6 +1,7 @@
 ---
 title: OptiQuake Local — 繁體中文
 description: 使用網路攝影機進行本地光學振動監測的開源實驗平台。
+lang: zh-Hant
 ---
 # OptiQuake Local — 繁體中文
 **建立者：** Lic. Juan Esteban Ramírez — 多明尼加共和國。

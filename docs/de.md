@@ -1,6 +1,7 @@
 ---
 title: OptiQuake Local — Deutsch
 description: Experimentelle Open-Source-Plattform zur lokalen optischen Vibrationsüberwachung mit Webcams.
+lang: de
 ---
 # OptiQuake Local — Deutsch
 **Urheber:** Lic. Juan Esteban Ramírez — Dominikanische Republik.
