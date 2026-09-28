@@ -2,6 +2,13 @@
 
 All notable project changes should be recorded here.
 
+## 0.1.2-experimental — 2026-09-27
+- Added public documentation in English, Spanish, Portuguese, French, German, Italian, Simplified Chinese, Japanese, Korean, Arabic, Hindi, and Russian.
+- Added hreflang links, expanded sitemap coverage, multilingual search keywords, and localized discovery pages.
+- Updated AI-readable `llms.txt` with multilingual documentation endpoints.
+- Added multilingual documentation links to the package README so PyPI visitors can reach localized pages.
+- Scientific scope remains unchanged: experimental local vibration observability, not validated earthquake classification or guaranteed early warning.
+
 ## 0.1.1-experimental — 2026-09-27
 - Added secure PyPI Trusted Publishing workflow using GitHub OIDC.
 - Added protected `pypi` deployment environment with required owner review.

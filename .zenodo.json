@@ -1,22 +1,24 @@
 {
-  "creators": [
-    {
-      "name": "Ramírez, Juan Esteban"
-    }
-  ],
-  "title": "OptiQuake Local",
-  "version": "0.1.1-experimental",
-  "access_right": "open",
-  "license": "AGPL-3.0-only",
-  "upload_type": "software",
-  "language": "eng",
-  "keywords": [
-    "optical vibration detection",
-    "webcam sensor",
-    "local-first sensing",
-    "seismic research",
-    "plugin API",
-    "AI agents",
-    "open source"
-  ]
+    "creators":  [
+                     {
+                         "name":  "Ramírez, Juan Esteban"
+                     }
+                 ],
+    "title":  "OptiQuake Local",
+    "version":  "0.1.2-experimental",
+    "access_right":  "open",
+    "license":  "AGPL-3.0-only",
+    "upload_type":  "software",
+    "language":  "eng",
+    "keywords":  [
+                     "optical vibration detection",
+                     "webcam sensor",
+                     "local-first sensing",
+                     "seismic research",
+                     "plugin API",
+                     "AI agents",
+                     "open source",
+                     "multilingual documentation"
+                 ],
+    "description":  "OptiQuake Local is an open-source experimental platform for local optical vibration observability using compatible webcams, with Plugin API v1, AI skill metadata, multilingual documentation, and community extensibility. It is not a certified seismometer, earthquake predictor, magnitude estimator, or guaranteed early-warning system."
 }

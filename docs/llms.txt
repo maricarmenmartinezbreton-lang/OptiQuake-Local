@@ -3,7 +3,7 @@ Public open-source experimental optical vibration monitoring software.
 
 Creator: Lic. Juan Esteban Ramírez, Dominican Republic.
 License: GNU AGPL-3.0-only.
-Current release: 0.1.1-experimental.
+Current release: 0.1.2-experimental.
 
 Primary resources:
 - Source: https://github.com/maricarmenmartinezbreton-lang/OptiQuake-Local

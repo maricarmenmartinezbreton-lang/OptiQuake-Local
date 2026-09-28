@@ -8,7 +8,7 @@ Experimental local optical vibration detection using an ordinary high-frame-rate
 
 **Author:** Lic. Juan Esteban Ramírez<br>
 **Origin:** Dominican Republic, 27 September 2026<br>
-**Version:** 0.1.1-experimental<br>
+**Version:** 0.1.2-experimental<br>
 **License:** AGPL-3.0
 
 OptiQuake Local turns a compatible webcam into an auxiliary vibration sensor by measuring frame-to-frame scene motion locally. It does **not** require earthquake feeds, catalogs, or cloud detection to trigger a vibration event.
@@ -34,7 +34,7 @@ optiquake-local --self-test
 
 Published package: `https://pypi.org/project/optiquake-local/`
 
-Citable archive: DOI `10.5281/zenodo.23004638` (project) and `10.5281/zenodo.23004639` (v0.1.1-experimental).
+Citable archive: project DOI `10.5281/zenodo.23004638`; Zenodo assigns a version DOI to each archived release.
 
 ## Run
 ```powershell

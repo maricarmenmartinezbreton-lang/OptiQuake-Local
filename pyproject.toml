@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "optiquake-local"
-version = "0.1.1"
+version = "0.1.2"
 description = "Experimental local optical vibration monitoring with a plugin API"
 readme = "README.md"
 requires-python = ">=3.10"

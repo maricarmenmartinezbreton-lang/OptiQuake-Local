@@ -1,6 +1,6 @@
 {
   "name": "optiquake-local",
-  "version": "0.1.1-experimental",
+  "version": "0.1.2-experimental",
   "author": "Lic. Juan Esteban Ramírez",
   "license": "AGPL-3.0",
   "kind": "local-sensor-skill",
