@@ -1,4 +1,4 @@
-﻿---
+---
 name: optiquake-local
 description: "Detección óptica local y experimental de vibraciones usando una webcam de alta frecuencia, con salida JSON para agentes de IA."
 ---

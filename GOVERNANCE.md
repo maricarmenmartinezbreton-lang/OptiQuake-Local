@@ -6,7 +6,7 @@ OptiQuake Local was initiated by **Lic. Juan Esteban Ramírez** from a locally v
 
 ## Open collaboration
 
-The project is MIT-licensed. Anyone may fork it, study it, improve it, redistribute it, or build compatible implementations subject to the license.
+The project is AGPL-3.0-licensed. Anyone may fork it, study it, improve it, redistribute it, or build compatible implementations subject to the license.
 
 ## Maintainer model
 

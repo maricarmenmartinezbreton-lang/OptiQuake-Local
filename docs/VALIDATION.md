@@ -1,4 +1,4 @@
-﻿# Initial validation record
+# Initial validation record
 
 Date: 2026-09-27  
 Platform: Windows / PC2-ULTRA-PRO  

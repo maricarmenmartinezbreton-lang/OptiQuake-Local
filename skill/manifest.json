@@ -1,8 +1,8 @@
-﻿{
+{
   "name": "optiquake-local",
   "version": "0.1.0-experimental",
   "author": "Lic. Juan Esteban Ramírez",
-  "license": "MIT",
+  "license": "AGPL-3.0",
   "kind": "local-sensor-skill",
   "runtime": "python3",
   "entrypoint": "src/optiquake.py",

@@ -1,4 +1,4 @@
-﻿# AI Skill Integration
+# AI Skill Integration
 
 OptiQuake Local can run as a reusable local sensor skill for AI agents and automation systems.
 

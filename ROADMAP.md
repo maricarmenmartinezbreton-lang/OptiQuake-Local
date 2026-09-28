@@ -5,7 +5,7 @@
 - Local optical vibration detection from a 60 fps webcam stream.
 - JSONL event output for automation and AI systems.
 - Experimental AI skill packaging.
-- MIT licensing, authorship, and reproducible validation notes.
+- AGPL-3.0 licensing, authorship, and reproducible validation notes.
 
 ## Phase 1 — Calibration and false-positive control
 
