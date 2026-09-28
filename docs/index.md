@@ -34,3 +34,7 @@ See the repository README, validation notes and contribution guide for installat
 PyPI: https://pypi.org/project/optiquake-local/
 
 Project DOI: https://doi.org/10.5281/zenodo.23004638
+
+## More resources
+- [Resumen en español](es.md)
+- [Agent-readable summary](llms.txt)
