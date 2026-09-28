@@ -4,6 +4,8 @@
 
 Experimental local optical vibration detection using an ordinary high-frame-rate webcam.
 
+**Languages:** [English](docs/index.md) · [Español](docs/es.md) · [Português](docs/pt.md) · [Français](docs/fr.md) · [Deutsch](docs/de.md) · [Italiano](docs/it.md) · [简体中文](docs/zh-cn.md) · [日本語](docs/ja.md) · [한국어](docs/ko.md) · [العربية](docs/ar.md) · [हिन्दी](docs/hi.md) · [Русский](docs/ru.md)
+
 **Author:** Lic. Juan Esteban Ramírez<br>
 **Origin:** Dominican Republic, 27 September 2026<br>
 **Version:** 0.1.1-experimental<br>

@@ -1,6 +1,7 @@
 ---
 title: OptiQuake Local
 description: Open-source experimental optical vibration monitoring with webcam sensors, plugins and AI-agent integrations.
+lang: en
 ---
 
 # OptiQuake Local
@@ -35,6 +36,19 @@ PyPI: https://pypi.org/project/optiquake-local/
 
 Project DOI: https://doi.org/10.5281/zenodo.23004638
 
+## Languages
+- [English](index.md)
+- [Español](es.md)
+- [Português](pt.md)
+- [Français](fr.md)
+- [Deutsch](de.md)
+- [Italiano](it.md)
+- [简体中文](zh-cn.md)
+- [日本語](ja.md)
+- [한국어](ko.md)
+- [العربية](ar.md)
+- [हिन्दी](hi.md)
+- [Русский](ru.md)
+
 ## More resources
-- [Resumen en español](es.md)
 - [Agent-readable summary](llms.txt)

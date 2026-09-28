@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/</loc>
-  </url>
-  <url>
-    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html</loc>
-  </url>
-  <url>
-    <loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/llms.txt</loc>
-  </url>
+  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/</loc></url>
+  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html</loc></url>
+  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html</loc></url>
+  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html</loc></url>
+  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html</loc></url>
+  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html</loc></url>
+  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-cn.html</loc></url>
+  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html</loc></url>
+  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html</loc></url>
+  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html</loc></url>
+  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html</loc></url>
+  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html</loc></url>
+  <url><loc>https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/llms.txt</loc></url>
 </urlset>

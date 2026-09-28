@@ -1,6 +1,7 @@
 ---
 title: OptiQuake Local — Español
 description: Plataforma experimental de código abierto para observación óptica local de vibraciones usando cámaras web.
+lang: es
 ---
 
 # OptiQuake Local — Resumen en español

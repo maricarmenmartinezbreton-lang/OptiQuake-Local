@@ -21,3 +21,17 @@ Capabilities:
 Scientific boundary:
 A vibration event is not automatically an earthquake.
 The project is not a certified seismometer, predictor, magnitude estimator, or guaranteed early-warning system.
+
+Language pages:
+- English: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/
+- Español: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/es.html
+- Português: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/pt.html
+- Français: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/fr.html
+- Deutsch: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/de.html
+- Italiano: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/it.html
+- 简体中文: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/zh-cn.html
+- 日本語: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ja.html
+- 한국어: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ko.html
+- العربية: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ar.html
+- हिन्दी: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/hi.html
+- Русский: https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/ru.html
