@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "optiquake-plugin-demo"
+version = "0.1.0"
+description = "Example third-party plugin for OptiQuake Local"
+requires-python = ">=3.10"
+
+[project.entry-points."optiquake.plugins"]
+demo = "optiquake_plugin_demo:create_plugin"
+
+[tool.setuptools]
+py-modules = ["optiquake_plugin_demo"]

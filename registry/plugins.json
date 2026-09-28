@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "plugin_api": "1",
+  "plugins": [
+    {
+      "name": "example-console",
+      "version": "0.1.0",
+      "kind": "event-consumer",
+      "source": "plugins/example_console.py",
+      "status": "bundled-example",
+      "author": "OptiQuake Local community template"
+    }
+  ]
+}

@@ -31,3 +31,23 @@
 ## Long-term goal
 
 Enable inexpensive, locally operated vibration-monitoring nodes that researchers and communities can extend without mandatory subscriptions or dependence on a single vendor.
+## Plugin ecosystem milestones
+
+### Plugin API v1 — implemented
+- Event-consumer plugins with lifecycle hooks.
+- Local-directory discovery.
+- Python package entry-point discovery.
+- Failure isolation so plugin exceptions do not stop the detector.
+- Community registry and manifest schema.
+
+### Plugin API v2 — proposed
+- Sensor-source plugins for external IMUs, phones, MEMS devices, microphones, and network nodes.
+- Detector/feature plugins that can contribute measurements before event classification.
+- Capability negotiation and permissions for network, storage, camera, and microphone access.
+- Signed release metadata and reproducible plugin test fixtures.
+
+### Ecosystem adapters
+- MCP server adapter.
+- n8n/Home Assistant nodes.
+- Webhook/REST event gateway.
+- Dashboard and time-series storage plugins.

@@ -21,3 +21,16 @@ Contributions are welcome from developers, researchers, makers, universities, em
 4. Document hardware, sampling rate, placement, and test conditions for sensor claims.
 5. Open a pull request explaining what changed, how it was tested, and known limitations.
 6. Do not describe a feature as earthquake detection or early warning unless evidence supports that claim.
+## Plugin contributions
+
+Plugin authors should target a declared Plugin API version and avoid importing private core internals.
+
+Official plugin-registry submissions must disclose:
+- source repository or package location;
+- author and license;
+- data stored or transmitted;
+- network/cloud dependencies;
+- hardware requirements;
+- reproducible test procedure.
+
+A plugin failure must not compromise the detector core. Security-sensitive or life-safety claims require additional review and evidence.

@@ -62,3 +62,24 @@ OptiQuake Local is designed to be improved by the community. See `CONTRIBUTING.m
 Developers can fork the repository, create focused branches, and propose pull requests. New hardware adapters and AI integrations should preserve the public JSON event contract whenever practical.
 
 Experimental vibration events must not be presented as confirmed earthquakes or guaranteed early warnings without appropriate validation.
+
+## Plugin ecosystem
+
+OptiQuake Local includes a versioned **Plugin API v1** so community extensions can receive vibration events without modifying the detector core.
+
+Plugins can be loaded from a local directory or discovered as installed Python packages through the `optiquake.plugins` entry-point group.
+
+Example:
+```powershell
+python src\optiquake.py --plugin-dir plugins --seconds 10
+```
+
+The repository includes:
+- `src/plugin_api.py` — stable event contract.
+- `src/plugin_loader.py` — discovery and lifecycle isolation.
+- `plugins/example_console.py` — minimal bundled example.
+- `examples/plugin-package/` — independently installable plugin template.
+- `registry/plugins.json` — community discovery registry.
+- `schemas/plugin-manifest.schema.json` — manifest schema.
+
+See `docs/PLUGIN_DEVELOPMENT.md` and `docs/PLUGIN_REGISTRY.md`.
