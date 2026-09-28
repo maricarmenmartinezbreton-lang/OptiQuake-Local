@@ -5,7 +5,7 @@ type: software
 authors:
   - given-names: "Juan Esteban"
     family-names: "Ramírez"
-version: "0.1.0-experimental"
+version: "0.1.1-experimental"
 date-released: "2026-09-27"
 license: AGPL-3.0
 repository-code: "https://github.com/maricarmenmartinezbreton-lang/OptiQuake-Local"

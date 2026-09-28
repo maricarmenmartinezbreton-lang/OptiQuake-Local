@@ -2,9 +2,9 @@
 
 Experimental local optical vibration detection using an ordinary high-frame-rate webcam.
 
-**Author:** Lic. Juan Esteban Ramírez  
-**Origin:** Dominican Republic, 27 September 2026  
-**Version:** 0.1.0-experimental  
+**Author:** Lic. Juan Esteban Ramírez<br>
+**Origin:** Dominican Republic, 27 September 2026<br>
+**Version:** 0.1.1-experimental<br>
 **License:** AGPL-3.0
 
 OptiQuake Local turns a compatible webcam into an auxiliary vibration sensor by measuring frame-to-frame scene motion locally. It does **not** require earthquake feeds, catalogs, or cloud detection to trigger a vibration event.

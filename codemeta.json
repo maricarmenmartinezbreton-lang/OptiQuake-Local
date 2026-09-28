@@ -2,7 +2,7 @@
   "@context": "https://w3id.org/codemeta/3.0",
   "@type": "SoftwareSourceCode",
   "name": "OptiQuake Local",
-  "version": "0.1.0-experimental",
+  "version": "0.1.1-experimental",
   "description": "Experimental local optical vibration monitoring using a webcam, with plugin and AI-agent interfaces.",
   "author": [{"@type": "Person", "name": "Lic. Juan Esteban Ramírez"}],
   "dateCreated": "2026-09-27",

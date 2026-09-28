@@ -4,11 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "optiquake-local"
-version = "0.1.0"
+version = "0.1.1"
 description = "Experimental local optical vibration monitoring with a plugin API"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {text = "AGPL-3.0-only"}
+license = "AGPL-3.0-only"
+license-files = ["LICENSE", "AUTHORS.md"]
 authors = [{name = "Lic. Juan Esteban Ramírez"}]
 keywords = ["vibration", "webcam", "optical-sensing", "seismic-research", "community-sensing", "plugins", "ai-agent", "open-source"]
 classifiers = [

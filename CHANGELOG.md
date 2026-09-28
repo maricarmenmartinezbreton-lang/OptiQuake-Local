@@ -2,6 +2,13 @@
 
 All notable project changes should be recorded here.
 
+## 0.1.1-experimental — 2026-09-27
+- Added secure PyPI Trusted Publishing workflow using GitHub OIDC.
+- Added protected `pypi` deployment environment with required owner review.
+- Enabled Zenodo-ready software metadata for DOI archival.
+- Added GitHub Pages, CodeMeta, `llms.txt`, and discovery metadata.
+- No change to the scientific claim: this remains experimental vibration monitoring, not validated earthquake detection or guaranteed early warning.
+
 ## 0.1.0-experimental — 2026-09-27
 - Initial optical vibration detector validated with Insta360 Link at 60 fps.
 - JSONL event output and AI skill packaging.
