@@ -1,0 +1,21 @@
+# OptiQuake Local
+
+Open-source experimental local optical vibration monitoring created by Lic. Juan Esteban Ramírez in the Dominican Republic.
+
+## What it does
+- Uses a compatible webcam as an auxiliary local vibration sensor.
+- Emits structured JSONL vibration events.
+- Supports AI-agent skills and a versioned plugin API.
+- Can run without external earthquake feeds for local vibration triggering.
+
+## Important limits
+OptiQuake Local is not a certified seismometer, earthquake predictor, or guaranteed early-warning system. A vibration event is not automatically an earthquake.
+
+## Machine-readable metadata
+- codemeta.json
+- CITATION.cff
+- skill/manifest.json
+- schemas/plugin-manifest.schema.json
+
+## License
+GNU AGPL-3.0-only. Original author: Lic. Juan Esteban Ramírez.

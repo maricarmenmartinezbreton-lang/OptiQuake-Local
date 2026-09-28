@@ -9,14 +9,18 @@ description = "Experimental local optical vibration monitoring with a plugin API
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "AGPL-3.0-only"}
-authors = [
-  {name = "Lic. Juan Esteban Ramírez"}
-]
-keywords = ["vibration", "webcam", "sensor", "seismic-research", "plugins", "ai"]
+authors = [{name = "Lic. Juan Esteban Ramírez"}]
+keywords = ["vibration", "webcam", "optical-sensing", "seismic-research", "community-sensing", "plugins", "ai-agent", "open-source"]
 classifiers = [
   "Programming Language :: Python :: 3",
   "Operating System :: Microsoft :: Windows"
 ]
+
+[project.urls]
+Homepage = "https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"
+Repository = "https://github.com/maricarmenmartinezbreton-lang/OptiQuake-Local"
+Documentation = "https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"
+Issues = "https://github.com/maricarmenmartinezbreton-lang/OptiQuake-Local/issues"
 
 [project.scripts]
 optiquake-local = "optiquake:main"
