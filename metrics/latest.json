@@ -1,13 +1,13 @@
 {
-  "timestamp_utc": "2026-10-04T16:23:38.908424+00:00",
+  "timestamp_utc": "2026-10-04T16:24:13.643653+00:00",
   "github": {
     "stars": 0,
     "forks": 0,
     "watchers": 0,
-    "views_14d": 10,
-    "unique_views_14d": 9,
-    "clones_14d": 261,
-    "unique_cloners_14d": 100,
+    "views_14d": null,
+    "unique_views_14d": null,
+    "clones_14d": null,
+    "unique_cloners_14d": null,
     "release_asset_downloads": 0
   },
   "pypi": {
