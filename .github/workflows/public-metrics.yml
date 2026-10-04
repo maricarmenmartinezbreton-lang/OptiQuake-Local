@@ -1,0 +1,30 @@
+﻿name: Public reach metrics
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 12 */2 * *"
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Collect public metrics
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/collect_public_metrics.py
+      - name: Commit metric snapshot when changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add METRICS.md metrics/latest.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Update public reach metrics"
+          git push

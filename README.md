@@ -1,8 +1,8 @@
-# OptiQuake Local
+﻿# OptiQuake Local
 
-[![PyPI version](https://img.shields.io/pypi/v/optiquake-local.svg)](https://pypi.org/project/optiquake-local/) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23004638.svg)](https://doi.org/10.5281/zenodo.23004638) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](LICENSE)
+[![PyPI version](https://img.shields.io/pypi/v/optiquake-local.svg)](https://pypi.org/project/optiquake-local/) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23004638.svg)](https://doi.org/10.5281/zenodo.23004638) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](LICENSE) [![Public reach metrics](https://github.com/maricarmenmartinezbreton-lang/OptiQuake-Local/actions/workflows/public-metrics.yml/badge.svg)](https://github.com/maricarmenmartinezbreton-lang/OptiQuake-Local/actions/workflows/public-metrics.yml)
 
-Experimental local optical vibration detection using an ordinary high-frame-rate webcam.
+Experimental local optical vibration detection using an ordinary high-frame-rate webcam.`r`n`r`n**Live public reach:** [METRICS.md](METRICS.md) tracks GitHub traffic, PyPI downloads and Zenodo views/downloads every two days.
 
 **Languages:** [English](docs/index.md) · [Español](docs/es.md) · [Português](docs/pt.md) · [Français](docs/fr.md) · [Deutsch](docs/de.md) · [Italiano](docs/it.md) · [简体中文](docs/zh-cn.md) · [日本語](docs/ja.md) · [한국어](docs/ko.md) · [العربية](docs/ar.md) · [हिन्दी](docs/hi.md) · [Русский](docs/ru.md)
 
@@ -97,3 +97,4 @@ The repository includes:
 - `schemas/plugin-manifest.schema.json` — manifest schema.
 
 See `docs/PLUGIN_DEVELOPMENT.md` and `docs/PLUGIN_REGISTRY.md`.
+
