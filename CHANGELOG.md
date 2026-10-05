@@ -2,6 +2,16 @@
 
 All notable project changes should be recorded here.
 
+## Unreleased
+- Refactored detection into a testable `Detector` class; the `event=vibration` contract and plugin API v1 are unchanged.
+- Added `status=vibration_end` summaries with start time, duration, frame count and peak score/robust z.
+- Added experimental Linux (V4L2) and macOS (AVFoundation) capture backends via `--backend` (auto-selected by OS).
+- Added `--input FILE` to replay recorded video with reproducible media-time timestamps.
+- Added `--cooldown`, `--health` and `--version`; validated numeric CLI arguments.
+- Ctrl+C now stops cleanly; FFmpeg capture failures and plugin load errors are reported as `status=error` JSON with a non-zero exit code.
+- Added synthetic detector tests (`tests/test_detector.py`) to CI.
+- Fixed a stray line-break artifact in the README.
+
 ## 0.1.2-experimental — 2026-09-27
 - Added public documentation in English, Spanish, Portuguese, French, German, Italian, Simplified Chinese, Japanese, Korean, Arabic, Hindi, and Russian.
 - Added hreflang links, expanded sitemap coverage, multilingual search keywords, and localized discovery pages.

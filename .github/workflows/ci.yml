@@ -18,6 +18,8 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: Core self-test
         run: python src/optiquake.py --self-test
+      - name: Detector test
+        run: python tests/test_detector.py
       - name: Plugin API test
         run: python tests/test_plugins.py
       - name: Validate JSON manifests

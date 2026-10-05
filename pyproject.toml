@@ -14,7 +14,9 @@ authors = [{name = "Lic. Juan Esteban Ramírez"}]
 keywords = ["vibration", "webcam", "optical-sensing", "seismic-research", "community-sensing", "plugins", "ai-agent", "open-source"]
 classifiers = [
   "Programming Language :: Python :: 3",
-  "Operating System :: Microsoft :: Windows"
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX :: Linux",
+  "Operating System :: MacOS"
 ]
 
 [project.urls]

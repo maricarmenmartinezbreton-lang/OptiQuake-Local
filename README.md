@@ -2,7 +2,9 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/optiquake-local.svg)](https://pypi.org/project/optiquake-local/) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23004638.svg)](https://doi.org/10.5281/zenodo.23004638) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](LICENSE) [![Public reach metrics](https://github.com/maricarmenmartinezbreton-lang/OptiQuake-Local/actions/workflows/public-metrics.yml/badge.svg)](https://github.com/maricarmenmartinezbreton-lang/OptiQuake-Local/actions/workflows/public-metrics.yml)
 
-Experimental local optical vibration detection using an ordinary high-frame-rate webcam.`r`n`r`n**Live public reach:** [METRICS.md](METRICS.md) tracks GitHub traffic, PyPI downloads and Zenodo views/downloads every two days.
+Experimental local optical vibration detection using an ordinary high-frame-rate webcam.
+
+**Live public reach:** [METRICS.md](METRICS.md) tracks GitHub traffic, PyPI downloads and Zenodo views/downloads every two days.
 
 **Languages:** [English](docs/index.md) · [Español](docs/es.md) · [Português](docs/pt.md) · [Français](docs/fr.md) · [Deutsch](docs/de.md) · [Italiano](docs/it.md) · [简体中文](docs/zh-cn.md) · [日本語](docs/ja.md) · [한국어](docs/ko.md) · [العربية](docs/ar.md) · [हिन्दी](docs/hi.md) · [Русский](docs/ru.md)
 
@@ -19,7 +21,7 @@ A controlled Insta360 Link test at 60 fps produced three intentional mechanical 
 This validates **vibration observability**, not earthquake classification, prediction, magnitude estimation, or guaranteed early warning.
 
 ## Requirements
-- Windows 10/11
+- Windows 10/11 (DirectShow); Linux (V4L2) and macOS (AVFoundation) capture backends are experimental
 - Python 3.10+
 - FFmpeg in PATH
 - UVC webcam; experimentally tested with Insta360 Link
@@ -41,6 +43,31 @@ Citable archive: project DOI `10.5281/zenodo.23004638`; v0.1.2-experimental DOI 
 python src\optiquake.py --self-test
 python src\optiquake.py --camera "Insta360 Link" --fps 60
 ```
+
+Linux / macOS (experimental):
+```bash
+python3 src/optiquake.py --health                      # check FFmpeg and backend
+python3 src/optiquake.py --camera /dev/video0 --fps 60 # Linux, V4L2
+python3 src/optiquake.py --camera 0 --fps 60           # macOS, AVFoundation
+```
+
+Replay a recorded clip for reproducible, offline validation (timestamps use media time):
+```bash
+python3 src/optiquake.py --input recording.mp4 --fps 60
+```
+
+Useful options:
+
+| Option | Purpose |
+|---|---|
+| `--backend auto\|dshow\|v4l2\|avfoundation` | FFmpeg capture backend (default: by operating system) |
+| `--input FILE` | Analyze a recorded video instead of a live camera |
+| `--cooldown SECONDS` | Minimum time between vibration events (merges nearby bursts) |
+| `--seconds SECONDS` | Stop after this much time |
+| `--health` | Report FFmpeg/platform readiness as JSON and exit |
+| `--version` | Print the version |
+
+Each vibration produces an `event=vibration` line when it starts and a `status=vibration_end` line with `start`, `duration`, `frames`, `peak_score` and `peak_robust_z` when it ends.
 
 ## Safety and scientific limits
 OptiQuake Local is a research prototype, **not a certified seismometer or life-safety system**. A single sensor at the user's location cannot reliably warn before the first seismic waves reach that same sensor.

@@ -15,6 +15,13 @@ Example vibration event:
 {"event":"vibration","t":1.42,"score":13.40,"baseline":0.39,"robust_z":34.1}
 ```
 
+Example end-of-vibration summary:
+```json
+{"status":"vibration_end","t":1.48,"start":1.38,"duration":0.1,"frames":6,"peak_score":13.40,"peak_robust_z":34.1}
+```
+
+Errors are reported as `{"status":"error","detail":"..."}` with a non-zero exit code. Run `--health` before monitoring to check FFmpeg and backend availability.
+
 ## Integration targets
 - OpenClaw/JARVIS skill
 - Generic subprocess-capable AI agents
