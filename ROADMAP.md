@@ -7,6 +7,8 @@
 - Experimental AI skill packaging.
 - AGPL-3.0 licensing, authorship, and reproducible validation notes.
 
+Research notes on what an early-warning-capable roadmap requires: [docs/INVESTIGACION_ALERTA_TEMPRANA.md](docs/INVESTIGACION_ALERTA_TEMPRANA.md) (Spanish).
+
 ## Phase 1 — Calibration and false-positive control
 
 - Establish quiet baselines by device and installation position.
