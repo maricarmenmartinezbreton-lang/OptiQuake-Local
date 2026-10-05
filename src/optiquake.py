@@ -114,6 +114,10 @@ class Detector:
         self.min_frames = min_frames
         self.cooldown = cooldown
         self.min_coverage = min_coverage
+        # A vibration starts when min_frames hits fall inside this many recent
+        # frames: oscillations dip through zero velocity, so hits interleave
+        # with quiet frames and are rarely consecutive.
+        self.start_window = 2*min_frames
         # Quiet frames needed to close a vibration: oscillations pass through
         # zero velocity, so a single quiet frame must not end the event.
         self.end_frames = end_frames if end_frames is not None else max(1, fps//4)
@@ -153,13 +157,15 @@ class Detector:
                     self.summary = self._finish()
             return None
         if not hit:
-            self.streak = []
             self.base.append(score)
-            return None
         self.streak.append(sample)
-        if len(self.streak) < self.min_frames or not self._cooled_down(t):
+        self.streak = self.streak[-self.start_window:]
+        while self.streak and not self.streak[0]["hit"]:
+            self.streak.pop(0)
+        hits = sum(1 for x in self.streak if x["hit"])
+        if not hit or hits < self.min_frames or not self._cooled_down(t):
             return None
-        self.active = {"start": t - (len(self.streak)-1)/self.fps,
+        self.active = {"start": self.streak[0]["t"],
                        "samples": self.streak, "quiet": 0}
         self.streak = []
         self.last_event_t = t

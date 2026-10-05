@@ -4,7 +4,7 @@ import contextlib, io, json, pathlib, sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-import array, math
+import array, math, random
 import threading
 from audio_band import AudioBand, read_stream
 from optiquake import (Detector, audio_input_args, capture_input_args, main, mad,
@@ -52,6 +52,16 @@ assert abs(s["duration"] - 4/60) < 1e-3, s
 
 # Vibration frames do not contaminate the baseline.
 assert 9.0 not in d.base
+
+# Hits interleaved with quiet frames (an oscillation passing through zero
+# velocity) still start a vibration: 3 hits inside a 6-frame window.
+d = Detector(fps=60, baseline_frames=120, min_frames=3)
+events, summaries = run_scores(d, quiet(120) + [9.0, 0.4, 9.0, 0.4, 9.0] + quiet(20))
+assert len(events) == 1 and summaries[0]["frames"] == 3, summaries
+assert abs(summaries[0]["start"] - 2.0) < 1e-6, summaries
+# ...but sparse isolated hits do not.
+d = Detector(fps=60, baseline_frames=120, min_frames=3)
+assert run_scores(d, quiet(120) + ([9.0] + quiet(4))*4 + quiet(20))[0] == []
 
 # min_score gates events even with a large robust z.
 d = Detector(fps=60, baseline_frames=120, min_score=20.0)
@@ -106,6 +116,10 @@ dx, dy = frame_shift(profiles(scene(), W, H), profiles(scene(1.5, -1.0), W, H))
 # scene(dx) samples at x+dx, so the content moves by -dx.
 assert abs(dx + 1.5) < 0.4 and abs(dy - 1.0) < 0.4, (dx, dy)
 assert dominant_frequency([math.sin(2*math.pi*5*i/60) for i in range(60)], 60) == 5.0
+# Noisy velocity: integrating to displacement keeps the estimate stable.
+noise = random.Random(3)
+vel = [math.cos(2*math.pi*4*i/60) + noise.gauss(0, 0.4) for i in range(180)]
+assert 3.6 <= dominant_frequency(vel, 60) <= 4.4, dominant_frequency(vel, 60)
 
 def run_frames(frames, **kw):
     out = io.StringIO()

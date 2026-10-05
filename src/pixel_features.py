@@ -69,13 +69,39 @@ def frame_shift(prev_profiles, cur_profiles, max_shift=3):
     (pc, pr), (cc, cr) = prev_profiles, cur_profiles
     return best_shift(pc, cc, max_shift), best_shift(pr, cr, max_shift)
 
-def dominant_frequency(samples, fps):
-    """Rough dominant frequency (Hz) from zero crossings of a velocity series."""
-    if len(samples) < 4:
+def dominant_frequency(velocity, fps, hysteresis=0.3):
+    """Rough dominant frequency (Hz) of an oscillation from per-frame shifts.
+
+    The shifts are integrated into a displacement (much smoother than the
+    noisy velocity), a linear drift is removed, and zero crossings are
+    counted with a hysteresis band so small jitter is ignored.
+    """
+    n = len(velocity)
+    if n < 4:
         return None
-    m = sum(samples)/len(samples)
-    signed = [(i, v-m > 0) for i, v in enumerate(samples) if abs(v-m) > 1e-9]
-    crossings = [i for (_, a), (i, b) in zip(signed, signed[1:]) if a != b]
+    pos, acc = [], 0.0
+    for v in velocity:
+        acc += v
+        pos.append(acc)
+    xm = (n-1)/2
+    ym = sum(pos)/n
+    sxx = sum((i-xm)**2 for i in range(n))
+    slope = sum((i-xm)*(p-ym) for i, p in enumerate(pos))/sxx
+    pos = [p - ym - slope*(i-xm) for i, p in enumerate(pos)]
+    rms = (sum(p*p for p in pos)/n) ** 0.5
+    if rms < 1e-9:
+        return None
+    band = hysteresis*rms
+    state, crossings = 0, []
+    for i, p in enumerate(pos):
+        if p > band and state <= 0:
+            if state < 0:
+                crossings.append(i)
+            state = 1
+        elif p < -band and state >= 0:
+            if state > 0:
+                crossings.append(i)
+            state = -1
     if len(crossings) < 2 or crossings[-1] == crossings[0]:
         return None
     # Consecutive zero crossings are half a period apart.

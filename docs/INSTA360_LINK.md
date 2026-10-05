@@ -69,6 +69,31 @@ Validar con una grabación (vídeo + audio del mismo archivo):
 optiquake-local --input prueba.mp4 --audio --min-coverage 0.5
 ```
 
+### Prueba de campo guiada (recomendado la primera vez)
+
+Desde la carpeta del repositorio, en Windows:
+
+```powershell
+python scripts\prueba_campo.py
+```
+
+El script busca la cámara y el micrófono de la Insta360, graba 52 s y te indica
+en pantalla qué hacer en cada momento:
+
+| Tiempo | Acción | Resultado correcto |
+|---|---|---|
+| 0–12 s | Calma | Sin eventos |
+| 12–20 s | 3 golpes firmes en el mueble | Eventos con cobertura alta |
+| 26–34 s | Caminar o mover la mano delante, sin tocar el mueble | Descartado por `--min-coverage 0.5` |
+| 40–48 s | Sacudir suavemente el soporte | Evento con cobertura alta y frecuencia medida |
+
+Al terminar muestra una tabla de aciertos y guarda la grabación y un informe JSON
+en `prueba_campo/`, solo en tu equipo. Para volver a analizar una grabación:
+`python scripts\prueba_campo.py --analizar prueba_campo\prueba_XXXX.mp4`.
+
+Con el protocolo sintético equivalente (vídeo y audio generados con FFmpeg),
+el resultado fue de 7/7 fases correctas.
+
 ## 4. Ejemplo de salida (valores ilustrativos)
 
 ```json

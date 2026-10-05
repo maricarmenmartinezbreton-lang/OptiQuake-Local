@@ -7,6 +7,9 @@ All notable project changes should be recorded here.
   - Pixel features: spatial `coverage` on a 4x4 grid, sub-pixel global `shift_px`, and `dominant_hz` from the shift oscillation.
   - Low-frequency microphone channel (`--audio`, 20–200 Hz band, robust baseline) with `audio_z`, `audio_peak_z` and `corroborated`.
   - `--min-coverage` rejects motion confined to one image region; `--list-devices` shows camera/microphone names.
+- Guided field test `scripts/prueba_campo.py` (Windows): records a 52 s protocol (quiet, desk knocks, walking, mount shake) with on-screen prompts, analyzes it and saves a JSON report locally.
+- Vibrations now start when `--min-frames` hits fall within a short window (oscillations dip through zero velocity), so short knocks are detected.
+- `dominant_hz` is estimated from integrated displacement with hysteresis, which is robust to noisy shifts.
 - Vibrations now close after `--end-seconds` (default 0.25 s) of quiet so one oscillation is not split into several events.
 - `VibrationEvent` gained optional `coverage`, `shift_px` and `audio_z` fields, omitted when unset; plugin API stays at v1.
 - Documented that the Insta360 Link SDK exposes no live gyro/IMU stream (`docs/INSTA360_LINK.md`).

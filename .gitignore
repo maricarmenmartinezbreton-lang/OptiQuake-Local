@@ -11,3 +11,6 @@ __pycache__/
 dist/
 build/
 *.egg-info/
+
+# Local field-test recordings and reports (scripts/prueba_campo.py)
+prueba_campo/
