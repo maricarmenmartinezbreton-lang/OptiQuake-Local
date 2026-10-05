@@ -3,6 +3,13 @@
 All notable project changes should be recorded here.
 
 ## Unreleased
+- Insta360 Link multi-channel sensing using only the camera's USB streams:
+  - Pixel features: spatial `coverage` on a 4x4 grid, sub-pixel global `shift_px`, and `dominant_hz` from the shift oscillation.
+  - Low-frequency microphone channel (`--audio`, 20–200 Hz band, robust baseline) with `audio_z`, `audio_peak_z` and `corroborated`.
+  - `--min-coverage` rejects motion confined to one image region; `--list-devices` shows camera/microphone names.
+- Vibrations now close after `--end-seconds` (default 0.25 s) of quiet so one oscillation is not split into several events.
+- `VibrationEvent` gained optional `coverage`, `shift_px` and `audio_z` fields, omitted when unset; plugin API stays at v1.
+- Documented that the Insta360 Link SDK exposes no live gyro/IMU stream (`docs/INSTA360_LINK.md`).
 - Refactored detection into a testable `Detector` class; the `event=vibration` contract and plugin API v1 are unchanged.
 - Added `status=vibration_end` summaries with start time, duration, frame count and peak score/robust z.
 - Added experimental Linux (V4L2) and macOS (AVFoundation) capture backends via `--backend` (auto-selected by OS).

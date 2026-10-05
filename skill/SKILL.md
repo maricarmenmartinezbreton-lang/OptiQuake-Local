@@ -15,11 +15,11 @@ Use a local high-frame-rate camera as an auxiliary vibration sensor without rely
 The process emits JSON Lines on stdout:
 - `status=started`: sensor stream opened.
 - `event=vibration`: local motion exceeded the adaptive baseline.
-- `status=vibration_end`: the vibration ended; includes `start`, `duration`, `frames`, `peak_score`, `peak_robust_z`.
+- `status=vibration_end`: the vibration ended; includes `start`, `duration`, `frames`, `peak_score`, `peak_robust_z`, and when available `peak_coverage`, `peak_shift_px`, `dominant_hz`, `audio_peak_z`, `corroborated`.
 - `status=error`: capture or plugin loading failed; includes `detail`.
 - `status=stopped`: monitoring ended.
 
-A vibration event contains `t`, `score`, `baseline`, and `robust_z`.
+A vibration event contains `t`, `score`, `baseline`, and `robust_z`, plus optional `coverage` (fraction of the image that moved), `shift_px` (global image shift) and `audio_z` (low-frequency microphone evidence). High coverage with a global shift suggests whole-camera shaking; low coverage suggests local motion in the scene.
 
 `python src/optiquake.py --health` reports FFmpeg and platform readiness, and `--input FILE` replays a recording for offline checks.
 

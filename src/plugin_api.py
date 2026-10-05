@@ -3,7 +3,7 @@ Copyright (c) 2026 Lic. Juan Esteban Ramírez
 SPDX-License-Identifier: AGPL-3.0-only
 """
 from dataclasses import dataclass, asdict
-from typing import Any, Mapping, Protocol
+from typing import Any, Mapping, Optional, Protocol
 
 PLUGIN_API_VERSION = "1"
 
@@ -15,9 +15,13 @@ class VibrationEvent:
     robust_z: float
     source: str = "optical"
     event: str = "vibration"
+    # Optional evidence (unreleased; omitted from to_dict() when unset).
+    coverage: Optional[float] = None   # fraction of image cells that moved
+    shift_px: Optional[float] = None   # global image shift between frames
+    audio_z: Optional[float] = None    # low-frequency microphone robust z
 
     def to_dict(self) -> dict[str, Any]:
-        return asdict(self)
+        return {k: v for k, v in asdict(self).items() if v is not None}
 
 class OptiQuakePlugin(Protocol):
     name: str

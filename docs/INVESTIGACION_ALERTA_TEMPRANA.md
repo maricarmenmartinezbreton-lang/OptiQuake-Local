@@ -44,6 +44,14 @@ Por eso la webcam debería ser **un sensor más**, no el único. Un acelerómetr
 (el del teléfono, o un ADXL355/MPU6050 con ESP32) mide aceleración real, cuesta
 poco y es lo que usan MyShake, Earthquake Network, GeoShake y la red de Bangladesh.
 
+### Lo que sí aprovecha la Insta360 Link (implementado; pendiente de publicar en PyPI)
+- **Cobertura espacial y desplazamiento global** de la imagen para separar la sacudida
+  de la cámara del movimiento local.
+- **Frecuencia dominante** de la oscilación.
+- **Micrófono en banda baja (20–200 Hz)** como corroboración.
+- La IMU del gimbal **no es accesible**: el SDK oficial no expone datos de giroscopio.
+  Guía completa: [INSTA360_LINK.md](INSTA360_LINK.md).
+
 ## 3. Mejoras propuestas, por prioridad
 
 ### Prioridad 1 — Detector sísmico estándar (en el propio programa)

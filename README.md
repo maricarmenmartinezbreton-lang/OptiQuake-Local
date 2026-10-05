@@ -63,11 +63,29 @@ Useful options:
 | `--backend auto\|dshow\|v4l2\|avfoundation` | FFmpeg capture backend (default: by operating system) |
 | `--input FILE` | Analyze a recorded video instead of a live camera |
 | `--cooldown SECONDS` | Minimum time between vibration events (merges nearby bursts) |
+| `--end-seconds SECONDS` | Quiet time that closes a vibration (default 0.25 s) |
+| `--min-coverage FRACTION` | Require this fraction of the image to move (e.g. 0.5) |
+| `--audio [DEVICE]` | Add the low-frequency microphone channel (file audio with `--input`) |
+| `--list-devices` | Show camera and microphone names |
 | `--seconds SECONDS` | Stop after this much time |
 | `--health` | Report FFmpeg/platform readiness as JSON and exit |
 | `--version` | Print the version |
 
 Each vibration produces an `event=vibration` line when it starts and a `status=vibration_end` line with `start`, `duration`, `frames`, `peak_score` and `peak_robust_z` when it ends.
+
+### Insta360 Link: pixels + low-frequency microphone
+
+The detector combines two channels that the camera already delivers over USB:
+
+- **Pixels:** `coverage` (fraction of a 4x4 grid that moved) separates whole-camera shaking from a person or object moving in one region; `shift_px` is the sub-pixel global image shift; `dominant_hz` estimates the oscillation frequency.
+- **Microphone:** band energy in 20–200 Hz (structural rumble) corroborates optical events (`audio_z`, `corroborated`).
+
+```powershell
+optiquake-local --list-devices
+optiquake-local --camera "Insta360 Link" --audio "Microphone (Insta360 Link)" --min-coverage 0.5
+```
+
+Setup guide (tracking off, microphone noise reduction off, rigid mounting, gimbal IMU status): [docs/INSTA360_LINK.md](docs/INSTA360_LINK.md) (Spanish).
 
 ## Safety and scientific limits
 OptiQuake Local is a research prototype, **not a certified seismometer or life-safety system**. A single sensor at the user's location cannot reliably warn before the first seismic waves reach that same sensor.
@@ -77,7 +95,7 @@ Local vibration can come from footsteps, doors, traffic, fans, camera motion, co
 The project intentionally reports **vibration events**, not "earthquakes," until independent multi-sensor validation supports classification.
 
 ## Privacy
-The MVP processes frames locally and does not save video. It emits numeric vibration-event metadata to stdout.
+The MVP processes frames and audio locally and does not save video or audio. It emits numeric vibration-event metadata to stdout.
 
 ## Roadmap
 1. Collect labeled non-seismic disturbances.

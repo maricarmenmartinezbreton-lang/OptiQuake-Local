@@ -29,5 +29,5 @@ Issues = "https://github.com/maricarmenmartinezbreton-lang/OptiQuake-Local/issue
 optiquake-local = "optiquake:main"
 
 [tool.setuptools]
-py-modules = ["optiquake", "plugin_api", "plugin_loader"]
+py-modules = ["optiquake", "plugin_api", "plugin_loader", "pixel_features", "audio_band"]
 package-dir = {"" = "src"}
