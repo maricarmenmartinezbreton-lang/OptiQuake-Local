@@ -2,6 +2,14 @@
 
 All notable project changes should be recorded here.
 
+## Unreleased
+- Fixed a hang when FFmpeg writes many warnings: its error output is now drained in the background instead of filling the pipe.
+- A missing or busy camera now reports `{"status": "capture_failed"}` with FFmpeg's error message and exits with code 1, instead of a silent `stopped`.
+- Invalid options (`--min-frames 0`, `--fps 0`, negative `--seconds`, or `--baseline-frames` smaller than the warm-up window) are rejected with a clear message; previously some of them made detection fire on every quiet frame or never start.
+- Plugin load failures print a one-line message instead of a traceback.
+- Detection logic moved into a testable `Detector` class (same behaviour), covered by the new `tests/test_detector.py` and an extended `--self-test`.
+- Fixed literal `` `r`n `` characters and a byte-order mark at the top of the README.
+
 ## 0.1.2-experimental — 2026-09-27
 - Added public documentation in English, Spanish, Portuguese, French, German, Italian, Simplified Chinese, Japanese, Korean, Arabic, Hindi, and Russian.
 - Added hreflang links, expanded sitemap coverage, multilingual search keywords, and localized discovery pages.
