@@ -37,6 +37,9 @@ TEXT = {
         "felt": "Puede sentirse en tu zona.",
         "offline": "Sin internet: alertas solo por el sensor de la cámara.",
         "offline_no_camera": "Sin internet y sin cámara: no hay alertas hasta que vuelva la conexión.",
+        "mesh_confirmed": "Vibración confirmada por {n} sensores: {nodes}.",
+        "mesh_remote": "Vibración fuerte detectada por {n} sensores cercanos: {nodes}.",
+        "drill_from": "Simulacro iniciado desde: {node}.",
         "footer": "Aviso experimental de OptiQuake Local. Sigue siempre las indicaciones "
                   "de las autoridades (Defensa Civil, COE, 911).",
         "ok": "ENTENDIDO",
@@ -60,6 +63,9 @@ TEXT = {
         "felt": "It may be felt in your area.",
         "offline": "No internet: alerts from the camera sensor only.",
         "offline_no_camera": "No internet and no camera: no alerts until the connection returns.",
+        "mesh_confirmed": "Vibration confirmed by {n} sensors: {nodes}.",
+        "mesh_remote": "Strong vibration detected by {n} nearby sensors: {nodes}.",
+        "drill_from": "Drill started from: {node}.",
         "footer": "Experimental OptiQuake Local alert. Always follow official instructions "
                   "from local authorities and emergency services.",
         "ok": "OK",
@@ -118,10 +124,10 @@ def build_quake_alert(quake, a, lang="es", confirmations=1):
     lines.append(t["footer"])
     return Alert(a.level, t["title"], lines, lang)
 
-def build_local_alert(lang="es", drill=False):
+def build_local_alert(lang="es", drill=False, headline=None):
     t = TEXT[lang]
-    lines = ([t["drill"]] if drill else []) + [t["local"], t["during"], t["during_detail"],
-                                              t["after"], t["footer"]]
+    lines = ([t["drill"]] if drill else []) + [headline or t["local"], t["during"],
+                                              t["during_detail"], t["after"], t["footer"]]
     return Alert(STRONG if drill else LOCAL, t["title"], lines, lang, drill)
 
 # ----------------------------------------------------------------- channels
@@ -237,6 +243,10 @@ class AlertCenter:
       distance, magnitude and protective actions. Reports too far away are
       only logged.
     - Official report shortly after a camera event: confirmation message.
+    - Sensor mesh (optional): local detections are shared with other
+      OptiQuake computers on the network. When another sensor sees the same
+      vibration the alert is upgraded to "confirmed by N sensors"; detections
+      from peers alone raise an alert only when at least mesh_min_sensors agree.
     """
     name = "alert-center"
     version = "0.1.0"
@@ -244,7 +254,8 @@ class AlertCenter:
 
     def __init__(self, location, channels, lang="es", monitor=None,
                  local_cooldown_s=60.0, confirm_window_s=180.0, clock=time.time,
-                 log=None, camera=True):
+                 log=None, camera=True, mesh=None, mesh_min_sensors=2,
+                 mesh_window_s=10.0, node="this computer"):
         self.location = location
         self.channels = list(channels)
         self.lang = lang
@@ -254,6 +265,12 @@ class AlertCenter:
         self.clock = clock
         self.log = log or (lambda record: print(json.dumps(record, ensure_ascii=False), flush=True))
         self.camera = camera
+        self.mesh = mesh
+        self.mesh_min_sensors = mesh_min_sensors
+        self.mesh_window_s = mesh_window_s
+        self.node = node
+        self.detections = []  # (time, node) of recent strong vibrations
+        self.last_mesh_alert = None
         self.last_local = None
         self.lock = threading.Lock()
 
@@ -272,17 +289,56 @@ class AlertCenter:
     def on_stop(self):
         if self.monitor:
             self.monitor.stop()
+        if self.mesh:
+            self.mesh.close()
         for ch in self.channels:
             if hasattr(ch, "close"):
                 ch.close()
 
     def on_event(self, event):
         now = self.clock()
+        if self.mesh:
+            self.mesh.send("vibration", {"score": event.score, "robust_z": event.robust_z})
         with self.lock:
+            self._record(now, self.node)
             if self.last_local is not None and now - self.last_local < self.local_cooldown_s:
                 return
             self.last_local = now
         self.dispatch(build_local_alert(self.lang))
+        self._check_mesh(now)
+
+    def _record(self, now, node):
+        self.detections = [d for d in self.detections if now - d[0] <= self.mesh_window_s]
+        self.detections.append((now, node))
+
+    def _check_mesh(self, now):
+        with self.lock:
+            nodes = sorted({n for t, n in self.detections if now - t <= self.mesh_window_s})
+            if len(nodes) < 2:
+                return
+            if self.last_mesh_alert is not None and now - self.last_mesh_alert < self.local_cooldown_s:
+                return
+            mine = self.node in nodes
+            if not mine and len(nodes) < self.mesh_min_sensors:
+                return
+            self.last_mesh_alert = now
+        t = TEXT[self.lang]
+        key = "mesh_confirmed" if mine else "mesh_remote"
+        alert = build_local_alert(self.lang, headline=t[key].format(n=len(nodes),
+                                                                    nodes=", ".join(nodes)))
+        alert.level = STRONG
+        self.dispatch(alert)
+
+    def on_peer(self, node, kind, data):
+        """Authentic message from another OptiQuake sensor on the network."""
+        now = self.clock()
+        self.log({"mesh_peer": node, "kind": kind, "data": data})
+        if kind == "vibration":
+            with self.lock:
+                self._record(now, node)
+            self._check_mesh(now)
+        elif kind == "drill":
+            self.drill(origin=node)
 
     def on_status(self, status):
         self.log(status)
@@ -312,8 +368,13 @@ class AlertCenter:
                 dist=a.distance_km))
         self.dispatch(alert)
 
-    def drill(self):
-        self.dispatch(build_local_alert(self.lang, drill=True))
+    def drill(self, origin=None):
+        alert = build_local_alert(self.lang, drill=True)
+        if origin:
+            alert.lines.insert(1, TEXT[self.lang]["drill_from"].format(node=origin))
+        elif self.mesh:
+            self.mesh.send("drill", {})
+        self.dispatch(alert)
 
 # ------------------------------------------------------------- home network
 

@@ -61,6 +61,10 @@ python src\optiquake.py --alerts --lan-port
   - `--lan-port`: an alert page for phones and tablets on the same Wi-Fi. **No internet needed**, only the home router. Open the printed address on the phone, tap *Activar alertas* and leave it open with the screen on; it flashes, plays a siren, vibrates (Android) and speaks.
   - `--ntfy-topic NAME`: push notification to phones with the [ntfy](https://ntfy.sh) app, even with the screen off (needs internet). Use a long, hard-to-guess topic name.
 - `--drill` runs a test alert (*SIMULACRO*) through every channel. `--no-camera` uses only the official feeds; `--no-feeds` never uses the internet.
+- **Sensor network** (`--mesh-key KEY`): several OptiQuake computers on the same network (home, office, neighbours sharing a network) send each other signed detections. When another sensor sees the same vibration within 10 s the alert becomes *confirmed by N sensors*; detections from other sensors alone raise an alert only when at least two agree (`--mesh-min-sensors`), so a truck next to one house does not alarm everyone. A drill started on one computer runs on all of them. Use the same key on every computer.
+- **Always on:** while monitoring, Windows is kept from sleeping (`--allow-sleep` to disable). `--install-autostart` starts the alerts when you sign in to Windows, restarts them if they stop, and logs to `%APPDATA%\OptiQuake\optiquake.log`. With the PC locked, the siren, voice and phones still work.
+
+**Easiest install on Windows:** double-click `INSTALAR-WINDOWS.cmd`. It installs Python and FFmpeg if missing (with winget) and runs a guided setup: location (Dominican Republic city list, internet detection or coordinates), camera, phones, sensor network, a drill and start-with-Windows. `DESINSTALAR-ARRANQUE.cmd` removes the automatic start. The first time, allow Windows Firewall access on *private networks* so phones and other sensors can connect.
 
 These alerts are informational and experimental. Keep official alerts enabled (for example Android Earthquake Alerts, ShakeAlert, national emergency alerts) and follow local authorities.
 

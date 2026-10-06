@@ -2,7 +2,7 @@
 """OptiQuake Local - experimental optical vibration detector.
 Author: Lic. Juan Esteban Ramírez | License: AGPL-3.0-only
 """
-import argparse, collections, json, shutil, statistics, subprocess, sys, threading, time
+import argparse, collections, json, shutil, socket, statistics, subprocess, sys, threading, time
 
 from plugin_api import VibrationEvent
 from plugin_loader import PluginLoadError, PluginManager
@@ -69,8 +69,12 @@ def validate_args(ap, args):
         ap.error("--seconds must be >= 0")
     if args.feed_interval < 10:
         ap.error("--feed-interval must be >= 10 seconds (be polite to official servers)")
-    if (args.drill or args.no_camera) and not args.alerts:
-        ap.error("--drill and --no-camera require --alerts")
+    if (args.drill or args.no_camera or args.mesh_key) and not args.alerts:
+        ap.error("--drill, --no-camera and --mesh-key require --alerts")
+    if args.mesh_key is not None and len(args.mesh_key) < 8:
+        ap.error("--mesh-key must have at least 8 characters")
+    if args.mesh_min_sensors < 1:
+        ap.error("--mesh-min-sensors must be >= 1")
     if args.no_camera and args.no_feeds:
         ap.error("--no-camera and --no-feeds together leave nothing to monitor")
     if args.baseline_frames < warmup_frames(args.fps):
@@ -129,7 +133,17 @@ def build_alert_center(args):
         print(json.dumps({"status": "lan_alerts", "url": lan.url,
                           "help": "open this address on phones connected to the same Wi-Fi"}),
               flush=True)
-    center = qa.AlertCenter(location, channels, lang=args.lang, camera=not args.no_camera)
+    center = qa.AlertCenter(location, channels, lang=args.lang, camera=not args.no_camera,
+                            mesh_min_sensors=args.mesh_min_sensors, node=args.node_name)
+    if args.mesh_key:
+        import mesh
+        try:
+            center.mesh = mesh.Mesh(args.mesh_key, args.node_name, center.on_peer,
+                                    port=args.mesh_port)
+        except OSError as exc:
+            raise SystemExit(f"Cannot open sensor network port {args.mesh_port}: {exc}")
+        print(json.dumps({"status": "mesh", "node": args.node_name, "port": args.mesh_port}),
+              flush=True)
     if not args.no_feeds:
         center.monitor = quake_feeds.FeedMonitor(center.on_quake, center.on_status,
                                                  interval=args.feed_interval)
@@ -160,6 +174,9 @@ def run(args):
     except (PluginLoadError, ImportError, SyntaxError) as exc:
         raise SystemExit(f"Plugin load failed: {exc}")
     if args.alerts:
+        if not args.allow_sleep:
+            import autostart
+            autostart.keep_awake()
         center = build_alert_center(args)
         if args.drill:
             if args.lan_port:
@@ -272,9 +289,70 @@ def main():
                     help="serve an alert page for phones on the home Wi-Fi "
                          "(no internet needed; default port 8765)")
     al.add_argument("--drill", action="store_true", help="trigger a test alert (simulacro) and exit")
-    args = ap.parse_args()
+    al.add_argument("--mesh-key", help="shared key: confirm vibrations with other OptiQuake "
+                    "computers on the same network (min. 8 characters)")
+    al.add_argument("--node-name", default=socket.gethostname(),
+                    help="name of this sensor in the network (default: computer name)")
+    al.add_argument("--mesh-port", type=int, default=8766)
+    al.add_argument("--mesh-min-sensors", type=int, default=2,
+                    help="peer sensors that must agree before alerting without a local detection")
+    al.add_argument("--allow-sleep", action="store_true",
+                    help="let Windows sleep while monitoring (alerts stop while asleep)")
+    st = ap.add_argument_group("setup")
+    st.add_argument("--setup", action="store_true", help="guided setup (location, camera, phones...)")
+    st.add_argument("--from-settings", action="store_true",
+                    help="use the options saved by --setup")
+    st.add_argument("--list-cameras", action="store_true")
+    st.add_argument("--install-autostart", action="store_true",
+                    help="start with Windows using the other options on this command line")
+    st.add_argument("--uninstall-autostart", action="store_true")
+    st.add_argument("--log", help="append output to this file (rotated at 5 MB)")
+    argv = sys.argv[1:]
+    if "--from-settings" in argv:
+        import setup_wizard
+        saved = setup_wizard.load_settings()
+        if saved is None:
+            ap.error("no saved settings: run --setup first")
+        argv = saved + [a for a in argv if a != "--from-settings"]
+    args = ap.parse_args(argv)
     validate_args(ap, args)
+    if args.log:
+        import autostart
+        sys.stdout = sys.stderr = autostart.open_log(args.log)
+    if args.setup or args.list_cameras or args.install_autostart or args.uninstall_autostart:
+        return setup_actions(args, argv)
     self_test() if args.self_test else run(args)
+
+def setup_actions(args, argv):
+    import autostart, geo, setup_wizard
+    if args.list_cameras:
+        for cam in setup_wizard.list_cameras():
+            print(cam)
+    elif args.uninstall_autostart:
+        removed = autostart.uninstall()
+        print(json.dumps({"autostart_removed": removed,
+                          "note": "the running monitor stops after you sign out or close it"}))
+    elif args.install_autostart:
+        keep = [a for a in argv if a != "--install-autostart"]
+        runner, launcher = autostart.install(keep, geo.config_dir())
+        print(json.dumps({"autostart": str(launcher), "runner": str(runner)}))
+    else:
+        def drill(saved):
+            cmd = [sys.executable, __file__, *strip_mesh(saved), "--drill"]
+            subprocess.run(cmd)
+        setup_wizard.Wizard(args.lang, run_drill=drill).run()
+
+def strip_mesh(argv):
+    """Drop sensor-network options (a setup drill must not alarm other houses)."""
+    out, skip = [], False
+    for a in argv:
+        if skip:
+            skip = False
+        elif a in ("--mesh-key", "--node-name", "--mesh-port", "--mesh-min-sensors"):
+            skip = True
+        else:
+            out.append(a)
+    return out
 
 if __name__ == "__main__":
     main()

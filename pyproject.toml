@@ -27,5 +27,5 @@ Issues = "https://github.com/maricarmenmartinezbreton-lang/OptiQuake-Local/issue
 optiquake-local = "optiquake:main"
 
 [tool.setuptools]
-py-modules = ["optiquake", "plugin_api", "plugin_loader", "geo", "quake_feeds", "quake_alerts", "alert_window"]
+py-modules = ["optiquake", "plugin_api", "plugin_loader", "geo", "quake_feeds", "quake_alerts", "alert_window", "mesh", "autostart", "setup_wizard"]
 package-dir = {"" = "src"}

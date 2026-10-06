@@ -6,6 +6,9 @@ All notable project changes should be recorded here.
 - Experimental earthquake alerts (`--alerts`): official feeds from USGS, EMSC and GFZ GEOFON, merged across agencies and filtered by the user's location (felt/strong-shaking distance estimates), plus immediate camera alerts that keep working offline and are marked confirmed when an official report matches.
 - Alert messages in Spanish and English: "ALERTA DE SISMO", Drop-Cover-Hold-On while shaking, calm evacuation to a safe open area afterwards, tsunami advice for large shallow quakes nearby.
 - Alert channels: full-screen flashing window, siren with Windows volume boost (speakers, Bluetooth or headphones), offline Windows speech, an alert page for phones on the home Wi-Fi that needs no internet (`--lan-port`), and ntfy phone push (`--ntfy-topic`).
+- Sensor network (`--mesh-key`): OptiQuake computers on the same network share HMAC-signed detections over UDP; alerts are upgraded to "confirmed by N sensors", peer-only detections need two sensors, drills run on every sensor; stale, replayed or unsigned messages are rejected.
+- Always on: Windows is kept awake while monitoring, `--install-autostart`/`--uninstall-autostart` (Startup folder, no admin, self-restarting), rotating `--log` file.
+- Guided setup (`--setup`, `INSTALAR-WINDOWS.cmd`): installs Python/FFmpeg with winget if missing, Dominican Republic city list, camera detection, phones, sensor network, drill and start with Windows; `--from-settings` reuses the saved choices; `--list-cameras`.
 - `--drill` (simulacro), `--no-camera` (feeds only), `--no-feeds` (never use internet), saved location for offline use, optional `--auto-location`.
 - Fixed a hang when FFmpeg writes many warnings: its error output is now drained in the background instead of filling the pipe.
 - A missing or busy camera now reports `{"status": "capture_failed"}` with FFmpeg's error message and exits with code 1, instead of a silent `stopped`.
