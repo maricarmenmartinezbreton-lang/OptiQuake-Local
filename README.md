@@ -44,6 +44,26 @@ python src\optiquake.py --self-test
 python src\optiquake.py --camera "Insta360 Link" --fps 60
 ```
 
+## Earthquake alerts (experimental)
+`--alerts` combines the camera with official earthquake reports and warns people nearby in every way available:
+
+```powershell
+# once: set your location (saved, so it also works offline later)
+python src\optiquake.py --alerts --lat 18.4861 --lon -69.9312 --place "Santo Domingo" --drill
+# normal use: camera + official feeds + phones on the home Wi-Fi
+python src\optiquake.py --alerts --lan-port
+```
+
+- **Official feeds:** USGS, EMSC and GFZ GEOFON are checked every 30 s (`--feed-interval`). Reports of the same quake from several agencies are merged. A report triggers an alert only if, given its magnitude and distance, it may be felt **at your location**; a quake in the Dominican Republic does not alert someone in New York. Official catalogues publish 1-20 minutes after the event, so they confirm and describe quakes; they are not early warning.
+- **Camera (works without internet):** a strong vibration triggers an immediate alert marked *unconfirmed*. If an official report arrives shortly after, the alert says it was confirmed. If the internet drops, the program says so and keeps alerting from the camera.
+- **Messages:** "EARTHQUAKE ALERT" + *Drop, Cover, Hold On* while shaking may be happening, then *leave calmly by the stairs to a safe open area*; tsunami advice for large shallow quakes nearby. Spanish (default) or English (`--lang en`).
+- **Alert channels:** full-screen flashing window, siren through the default audio device (built-in speakers, Bluetooth speaker or headphones; on Windows the volume is raised to the maximum first), spoken message, and:
+  - `--lan-port`: an alert page for phones and tablets on the same Wi-Fi. **No internet needed**, only the home router. Open the printed address on the phone, tap *Activar alertas* and leave it open with the screen on; it flashes, plays a siren, vibrates (Android) and speaks.
+  - `--ntfy-topic NAME`: push notification to phones with the [ntfy](https://ntfy.sh) app, even with the screen off (needs internet). Use a long, hard-to-guess topic name.
+- `--drill` runs a test alert (*SIMULACRO*) through every channel. `--no-camera` uses only the official feeds; `--no-feeds` never uses the internet.
+
+These alerts are informational and experimental. Keep official alerts enabled (for example Android Earthquake Alerts, ShakeAlert, national emergency alerts) and follow local authorities.
+
 ## Safety and scientific limits
 OptiQuake Local is a research prototype, **not a certified seismometer or life-safety system**. A single sensor at the user's location cannot reliably warn before the first seismic waves reach that same sensor.
 
@@ -53,6 +73,8 @@ The project intentionally reports **vibration events**, not "earthquakes," until
 
 ## Privacy
 The MVP processes frames locally and does not save video. It emits numeric vibration-event metadata to stdout.
+
+With `--alerts`, the program downloads public earthquake lists from USGS, EMSC and GFZ; your location is used only on your computer to compute distances and is saved in `%APPDATA%\OptiQuake\location.json`. `--auto-location` sends a request to ipwho.is, which sees your public IP. `--ntfy-topic` sends the alert text to ntfy.sh. `--lan-port` serves a read-only alert page on your local network.
 
 ## Roadmap
 1. Collect labeled non-seismic disturbances.

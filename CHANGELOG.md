@@ -3,6 +3,10 @@
 All notable project changes should be recorded here.
 
 ## Unreleased
+- Experimental earthquake alerts (`--alerts`): official feeds from USGS, EMSC and GFZ GEOFON, merged across agencies and filtered by the user's location (felt/strong-shaking distance estimates), plus immediate camera alerts that keep working offline and are marked confirmed when an official report matches.
+- Alert messages in Spanish and English: "ALERTA DE SISMO", Drop-Cover-Hold-On while shaking, calm evacuation to a safe open area afterwards, tsunami advice for large shallow quakes nearby.
+- Alert channels: full-screen flashing window, siren with Windows volume boost (speakers, Bluetooth or headphones), offline Windows speech, an alert page for phones on the home Wi-Fi that needs no internet (`--lan-port`), and ntfy phone push (`--ntfy-topic`).
+- `--drill` (simulacro), `--no-camera` (feeds only), `--no-feeds` (never use internet), saved location for offline use, optional `--auto-location`.
 - Fixed a hang when FFmpeg writes many warnings: its error output is now drained in the background instead of filling the pipe.
 - A missing or busy camera now reports `{"status": "capture_failed"}` with FFmpeg's error message and exits with code 1, instead of a silent `stopped`.
 - Invalid options (`--min-frames 0`, `--fps 0`, negative `--seconds`, or `--baseline-frames` smaller than the warm-up window) are rejected with a clear message; previously some of them made detection fire on every quiet frame or never start.

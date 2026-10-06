@@ -2,7 +2,7 @@
 """OptiQuake Local - experimental optical vibration detector.
 Author: Lic. Juan Esteban Ramírez | License: AGPL-3.0-only
 """
-import argparse, collections, json, shutil, statistics, subprocess, threading, time
+import argparse, collections, json, shutil, statistics, subprocess, sys, threading, time
 
 from plugin_api import VibrationEvent
 from plugin_loader import PluginLoadError, PluginManager
@@ -67,6 +67,12 @@ def validate_args(ap, args):
             ap.error(f"--{name.replace('_', '-')} must be >= 1")
     if args.seconds < 0:
         ap.error("--seconds must be >= 0")
+    if args.feed_interval < 10:
+        ap.error("--feed-interval must be >= 10 seconds (be polite to official servers)")
+    if (args.drill or args.no_camera) and not args.alerts:
+        ap.error("--drill and --no-camera require --alerts")
+    if args.no_camera and args.no_feeds:
+        ap.error("--no-camera and --no-feeds together leave nothing to monitor")
     if args.baseline_frames < warmup_frames(args.fps):
         ap.error(f"--baseline-frames must be >= {warmup_frames(args.fps)} "
                  "(max of 30 and --fps), otherwise detection never starts")
@@ -78,6 +84,72 @@ def build_plugins(args):
         manager.load_entrypoints()
     return manager
 
+def setup_location(args):
+    import geo
+    if args.lat is not None or args.lon is not None:
+        if args.lat is None or args.lon is None:
+            raise SystemExit("Use --lat and --lon together")
+        loc = geo.Location(args.lat, args.lon, args.place or "", "manual")
+        geo.save_location(loc)
+        return loc
+    if args.auto_location:
+        try:
+            loc = geo.locate_by_ip()
+            geo.save_location(loc)
+            return loc
+        except Exception as exc:
+            print(json.dumps({"notice": "auto location failed, using saved location",
+                              "detail": str(exc)[:200]}), flush=True)
+    return geo.load_location()
+
+def build_alert_center(args):
+    import quake_alerts as qa, quake_feeds
+    location = setup_location(args)
+    print(json.dumps({"status": "location", "location": location.__dict__ if location else None}),
+          flush=True)
+    if location is None:
+        print(json.dumps({"notice": "No location set: official reports cannot be filtered by "
+                          "distance. Use --lat/--lon (once; it is saved) or --auto-location."}),
+              flush=True)
+    channels = [qa.ConsoleChannel()]
+    if not args.no_sound:
+        channels.append(qa.SirenChannel(boost_volume=not args.no_volume_boost))
+    if not args.no_voice:
+        channels.append(qa.VoiceChannel())
+    if not args.no_window:
+        channels.append(qa.WindowChannel())
+    if args.ntfy_topic:
+        channels.append(qa.NtfyChannel(args.ntfy_topic))
+    if args.lan_port:
+        try:
+            lan = qa.LanChannel(args.lan_port)
+        except OSError as exc:
+            raise SystemExit(f"Cannot open home-network alert page on port {args.lan_port}: {exc}")
+        channels.append(lan)
+        print(json.dumps({"status": "lan_alerts", "url": lan.url,
+                          "help": "open this address on phones connected to the same Wi-Fi"}),
+              flush=True)
+    center = qa.AlertCenter(location, channels, lang=args.lang, camera=not args.no_camera)
+    if not args.no_feeds:
+        center.monitor = quake_feeds.FeedMonitor(center.on_quake, center.on_status,
+                                                 interval=args.feed_interval)
+    return center
+
+def monitor_feeds_only(args, plugins):
+    """No camera: official feeds only (works on any OS, needs internet)."""
+    started = time.time()
+    emit_plugin_errors("start", plugins.start({"camera": None}))
+    print(json.dumps({"status": "started", "camera": None,
+                      "plugins": plugins.describe()}), flush=True)
+    try:
+        while not args.seconds or time.time() - started < args.seconds:
+            time.sleep(0.5)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        emit_plugin_errors("stop", plugins.stop())
+    print(json.dumps({"status": "stopped"}), flush=True)
+
 def emit_plugin_errors(stage, errors):
     for error in errors:
         print(json.dumps({"plugin_error": stage, "detail": error}), flush=True)
@@ -87,6 +159,20 @@ def run(args):
         plugins = build_plugins(args)
     except (PluginLoadError, ImportError, SyntaxError) as exc:
         raise SystemExit(f"Plugin load failed: {exc}")
+    if args.alerts:
+        center = build_alert_center(args)
+        if args.drill:
+            if args.lan_port:
+                print(json.dumps({"notice": "drill in 15 s: open the page on your phone "
+                                  "and tap 'Activar alertas'"}), flush=True)
+                time.sleep(15)
+            center.drill()
+            time.sleep(25 if args.lan_port else 3)  # let siren/voice/window/phones react
+            center.on_stop()
+            return
+        plugins.plugins.insert(0, center)
+    if args.no_camera:
+        return monitor_feeds_only(args, plugins)
     p = capture(args.camera, args.fps, args.width, args.height)
     n = args.width * args.height
     prev = None
@@ -146,6 +232,10 @@ def self_test():
     print("SELF_TEST_OK")
 
 def main():
+    # Spanish alert text must never crash a console that cannot show accents.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(errors="replace")
     ap = argparse.ArgumentParser(description="Experimental local optical vibration detector")
     ap.add_argument("--camera", default="Insta360 Link")
     ap.add_argument("--fps", type=int, default=60)
@@ -159,6 +249,29 @@ def main():
     ap.add_argument("--plugin-dir")
     ap.add_argument("--installed-plugins", action="store_true")
     ap.add_argument("--self-test", action="store_true")
+    al = ap.add_argument_group("earthquake alerts (experimental)")
+    al.add_argument("--alerts", action="store_true",
+                    help="enable alerts: camera events + official feeds (USGS, EMSC, GFZ)")
+    al.add_argument("--lat", type=float, help="your latitude (saved for offline use)")
+    al.add_argument("--lon", type=float, help="your longitude (saved for offline use)")
+    al.add_argument("--place", help="name for your location, e.g. 'Santo Domingo'")
+    al.add_argument("--auto-location", action="store_true",
+                    help="approximate location from your public IP (needs internet)")
+    al.add_argument("--lang", choices=["es", "en"], default="es")
+    al.add_argument("--no-feeds", action="store_true", help="camera only, never use internet")
+    al.add_argument("--no-camera", action="store_true", help="official feeds only")
+    al.add_argument("--feed-interval", type=float, default=30.0,
+                    help="seconds between official feed checks (default 30)")
+    al.add_argument("--no-sound", action="store_true")
+    al.add_argument("--no-volume-boost", action="store_true",
+                    help="do not raise the Windows volume before the siren")
+    al.add_argument("--no-voice", action="store_true")
+    al.add_argument("--no-window", action="store_true")
+    al.add_argument("--ntfy-topic", help="ntfy.sh topic to push alerts to your phone (internet)")
+    al.add_argument("--lan-port", type=int, nargs="?", const=8765, default=None,
+                    help="serve an alert page for phones on the home Wi-Fi "
+                         "(no internet needed; default port 8765)")
+    al.add_argument("--drill", action="store_true", help="trigger a test alert (simulacro) and exit")
     args = ap.parse_args()
     validate_args(ap, args)
     self_test() if args.self_test else run(args)

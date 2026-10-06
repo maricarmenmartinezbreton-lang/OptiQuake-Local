@@ -22,6 +22,8 @@ jobs:
         run: python tests/test_plugins.py
       - name: Detector test
         run: python tests/test_detector.py
+      - name: Earthquake alerts test
+        run: python tests/test_alerts.py
       - name: Validate JSON manifests
         shell: python
         run: |

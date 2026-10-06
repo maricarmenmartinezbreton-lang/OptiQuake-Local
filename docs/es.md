@@ -13,6 +13,24 @@ OptiQuake Local es una plataforma experimental de código abierto que utiliza c�
 ## Instalación
 `python -m pip install optiquake-local`
 
+## Alertas de sismo (experimental)
+Con `--alerts`, OptiQuake combina la cámara con los reportes oficiales de USGS, EMSC y GFZ:
+
+```powershell
+# una vez: tu ubicación (se guarda y sirve también sin internet)
+python src\optiquake.py --alerts --lat 18.4861 --lon -69.9312 --place "Santo Domingo" --drill
+# uso normal: cámara + fuentes oficiales + teléfonos en el Wi-Fi de la casa
+python src\optiquake.py --alerts --lan-port
+```
+
+- Solo avisa de un sismo oficial si, por su magnitud y distancia, puede sentirse **donde estás**. Un sismo en RD no alerta a alguien en Estados Unidos.
+- **Sin internet** sigue funcionando con la cámara y lo indica en pantalla.
+- El aviso dice **ALERTA DE SISMO**, *Agáchate, cúbrete, sujétate* mientras tiembla, y *cuando pare, sal despacio y busca un lugar seguro y abierto*. Si hay riesgo, añade el aviso de tsunami.
+- Canales: ventana roja a pantalla completa, sirena por las bocinas, bocina Bluetooth o auriculares (sube el volumen al máximo en Windows), voz, página para teléfonos en el Wi-Fi de casa (`--lan-port`, no necesita internet) y notificación al celular con ntfy (`--ntfy-topic`, necesita internet).
+- `--drill` hace un **simulacro** por todos los canales.
+
+Es un aviso experimental: mantén activadas las alertas oficiales y sigue las indicaciones de Defensa Civil, el COE y el 911.
+
 ## Integraciones
 - Skill para sistemas de IA.
 - Plugin API v1 para extensiones comunitarias.
