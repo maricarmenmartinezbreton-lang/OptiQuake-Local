@@ -185,6 +185,9 @@ def run(args):
                 time.sleep(15)
             center.drill()
             time.sleep(25 if args.lan_port else 3)  # let siren/voice/window/phones react
+            for ch in center.channels:
+                if hasattr(ch, "wait"):
+                    ch.wait(120)  # finish speaking and report a missing voice
             center.on_stop()
             return
         plugins.plugins.insert(0, center)

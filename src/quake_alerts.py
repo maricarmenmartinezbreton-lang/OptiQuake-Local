@@ -175,29 +175,104 @@ class SirenChannel:
         secs = self.seconds if alert.level in (STRONG, LOCAL) else max(3, self.seconds // 4)
         threading.Thread(target=self._play, args=(secs,), daemon=True).start()
 
+VOICE_PS = r"""
+$ErrorActionPreference = 'Stop'
+$t = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('__TEXT__'))
+$lang = '__LANG__'
+# 1) Classic desktop voices (System.Speech / SAPI)
+try {
+  Add-Type -AssemblyName System.Speech
+  $s = New-Object System.Speech.Synthesis.SpeechSynthesizer
+  $v = $s.GetInstalledVoices() | Where-Object { $_.Enabled -and
+        $_.VoiceInfo.Culture.TwoLetterISOLanguageName -eq $lang } | Select-Object -First 1
+  if ($v) { $s.SelectVoice($v.VoiceInfo.Name); $s.Volume = 100; $s.Rate = -1
+            $s.Speak($t); $s.Speak($t); exit 0 }
+} catch {}
+# 2) Modern Windows 10/11 voices (OneCore), installed from Settings > Time & language > Speech
+try {
+  Add-Type -AssemblyName System.Runtime.WindowsRuntime
+  $asTask = ([System.WindowsRuntimeSystemExtensions].GetMethods() | Where-Object {
+      $_.Name -eq 'AsTask' -and $_.GetParameters().Count -eq 1 -and
+      $_.GetParameters()[0].ParameterType.Name -eq 'IAsyncOperation`1' })[0]
+  [void][Windows.Media.SpeechSynthesis.SpeechSynthesizer, Windows.Media.SpeechSynthesis, ContentType = WindowsRuntime]
+  $ov = [Windows.Media.SpeechSynthesis.SpeechSynthesizer]::AllVoices |
+        Where-Object { $_.Language -like "$lang*" } | Select-Object -First 1
+  if ($ov) {
+    $w = New-Object Windows.Media.SpeechSynthesis.SpeechSynthesizer
+    $w.Voice = $ov
+    $task = $asTask.MakeGenericMethod([Windows.Media.SpeechSynthesis.SpeechSynthesisStream]).Invoke(
+              $null, @($w.SynthesizeTextToStreamAsync($t)))
+    $task.Wait(-1) | Out-Null
+    $f = Join-Path $env:TEMP ('optiquake-voice-' + [guid]::NewGuid() + '.wav')
+    $in = [System.IO.WindowsRuntimeStreamExtensions]::AsStreamForRead($task.Result)
+    $out = [IO.File]::Create($f); $in.CopyTo($out); $out.Close()
+    $p = New-Object Media.SoundPlayer $f; $p.PlaySync(); $p.PlaySync()
+    Remove-Item $f -ErrorAction SilentlyContinue
+    exit 0
+  }
+} catch {}
+exit 2
+"""
+
+NO_VOICE = {
+    "es": "No hay voz en español instalada en Windows; la alerta hablada no sonó. "
+          "Instálala en Configuración > Hora e idioma > Voz > Agregar voces > Español "
+          "(México o España) y repite el simulacro.",
+    "en": "No English voice is installed in Windows; the spoken alert did not play. "
+          "Add one in Settings > Time & language > Speech > Add voices.",
+}
+
+def speech_text(alert):
+    """Text for the speech engine: no symbols, no ALL CAPS (some voices spell them)."""
+    parts = []
+    for line in [alert.title] + list(alert.lines[:4]):
+        line = line.replace(" · ", ", ").replace("·", ",").strip()
+        if line.isupper():
+            line = line.lower().capitalize()
+        parts.append(line.rstrip("."))
+    return ". ".join(parts) + "."
+
 class VoiceChannel:
-    """Spoken alert with the offline Windows speech engine (say/spd-say elsewhere)."""
+    """Spoken alert in the alert's language, offline. On Windows it picks an installed
+    voice for that language (classic or modern voices) and never falls back to a
+    voice of another language; if none exists it logs how to install one."""
     name = "voice"
-    PS = ("Add-Type -AssemblyName System.Speech;"
-          "$s=New-Object System.Speech.Synthesis.SpeechSynthesizer;"
-          "$s.Volume=100;$t=[Console]::In.ReadToEnd();$s.Speak($t);$s.Speak($t)")
+    def __init__(self, log=None):
+        self.log = log or (lambda r: print(json.dumps(r, ensure_ascii=False), flush=True))
+        self.thread = None
+
+    def wait(self, timeout):
+        if self.thread:
+            self.thread.join(timeout)
+
+    def windows_command(self, alert):
+        import base64
+        text = base64.b64encode(speech_text(alert).encode("utf-8")).decode("ascii")
+        script = VOICE_PS.replace("__TEXT__", text).replace("__LANG__", alert.lang)
+        # -EncodedCommand (UTF-16LE base64) avoids every quoting problem of -Command.
+        encoded = base64.b64encode(script.encode("utf-16-le")).decode("ascii")
+        return ["powershell", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass",
+                "-EncodedCommand", encoded]
+
     def send(self, alert):
-        text = ". ".join([alert.title] + [x for x in alert.lines[:4]])
         if _is_windows():
-            cmd = ["powershell", "-NoProfile", "-NonInteractive", "-Command", self.PS]
+            cmd = self.windows_command(alert)
         else:
             import shutil
             exe = shutil.which("say") or shutil.which("spd-say")
             if not exe:
                 return
-            cmd = [exe, text]
-        try:
-            p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL,
-                                 stderr=subprocess.DEVNULL)
-            if _is_windows():
-                p.stdin.write(text.encode("utf-8")); p.stdin.close()
-        except OSError:
-            pass
+            cmd = [exe, speech_text(alert)]
+        def speak():
+            try:
+                code = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                                      timeout=180).returncode
+            except (OSError, subprocess.TimeoutExpired):
+                return
+            if code == 2:
+                self.log({"notice": NO_VOICE.get(alert.lang, NO_VOICE["en"])})
+        self.thread = threading.Thread(target=speak, daemon=True)
+        self.thread.start()
 
 class WindowChannel:
     """Full-screen, always-on-top flashing window (separate process, tkinter)."""

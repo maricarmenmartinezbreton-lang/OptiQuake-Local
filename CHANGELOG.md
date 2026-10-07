@@ -3,6 +3,7 @@
 All notable project changes should be recorded here.
 
 ## Unreleased
+- Spoken alerts now use an installed voice in the alert's language (classic or modern Windows 10/11 voices) instead of the system default voice, keep accents intact, read naturally (no "·", no spelled-out capitals), and report how to install a Spanish voice when none exists.
 - Experimental earthquake alerts (`--alerts`): official feeds from USGS, EMSC and GFZ GEOFON, merged across agencies and filtered by the user's location (felt/strong-shaking distance estimates), plus immediate camera alerts that keep working offline and are marked confirmed when an official report matches.
 - Alert messages in Spanish and English: "ALERTA DE SISMO", Drop-Cover-Hold-On while shaking, calm evacuation to a safe open area afterwards, tsunami advice for large shallow quakes nearby.
 - Alert channels: full-screen flashing window, siren with Windows volume boost (speakers, Bluetooth or headphones), offline Windows speech, an alert page for phones on the home Wi-Fi that needs no internet (`--lan-port`), and ntfy phone push (`--ntfy-topic`).

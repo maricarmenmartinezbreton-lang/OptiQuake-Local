@@ -69,6 +69,20 @@ assert qa.build_local_alert("en").lines[1] == qa.TEXT["en"]["during"]
 assert qa.build_local_alert(drill=True).lines[0].startswith("SIMULACRO")
 assert set(qa.TEXT["es"]) == set(qa.TEXT["en"])
 
+# ---- spoken alert: right language, readable text, safe transport to PowerShell
+import base64, re
+spoken = qa.speech_text(qa.build_local_alert(drill=True))
+assert spoken.startswith("Alerta de sismo. Simulacro, simulacro, simulacro.")
+assert "Agáchate, cúbrete, sujétate" in spoken and "·" not in spoken
+for lang in ("es", "en"):
+    cmd = qa.VoiceChannel().windows_command(qa.build_local_alert(lang))
+    assert cmd[-2] == "-EncodedCommand"
+    script = base64.b64decode(cmd[-1]).decode("utf-16-le")
+    assert f"$lang = '{lang}'" in script
+    inner = re.search(r"FromBase64String\('([^']+)'\)", script).group(1)
+    assert base64.b64decode(inner).decode("utf-8") == qa.speech_text(qa.build_local_alert(lang))
+assert "Español" in qa.NO_VOICE["es"]
+
 # ---- feed monitor: merge agencies, ignore old reports, survive outages
 calls = []
 feeds_up = {"ok": True}
