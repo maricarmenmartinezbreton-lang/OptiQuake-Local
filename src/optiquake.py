@@ -188,6 +188,7 @@ def run(args):
             for ch in center.channels:
                 if hasattr(ch, "wait"):
                     ch.wait(120)  # finish speaking and report a missing voice
+            center.print_drill_report()
             center.on_stop()
             return
         plugins.plugins.insert(0, center)

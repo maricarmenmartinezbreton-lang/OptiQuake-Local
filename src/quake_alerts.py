@@ -72,6 +72,41 @@ TEXT = {
     },
 }
 
+REPORT = {
+    "es": {
+        "head": "RESULTADO DEL SIMULACRO",
+        "window": "Pantalla del PC (ventana roja)", "siren": "Sirena por el sonido de Windows",
+        "siren_hint": "suena por la salida de audio predeterminada: bocinas, auriculares o una "
+                      "bocina Bluetooth emparejada en Windows",
+        "voice": "Voz en español", "voice_en": "Voz en inglés",
+        "lan": "Teléfonos por el Wi-Fi de casa",
+        "lan_got": "{n} teléfono(s) recibieron la alerta",
+        "lan_none": "ningún teléfono la recibió: abre {url} en el teléfono (mismo Wi-Fi), toca "
+                    "'Activar alertas' y déjala abierta",
+        "mesh": "Otros equipos con OptiQuake", "mesh_got": "respondieron: {nodes}",
+        "mesh_none": "ninguno respondió (deben tener OptiQuake abierto con la misma clave)",
+        "ntfy": "Celular por internet (app ntfy)", "ntfy_fail": "no se pudo enviar: {err}",
+        "off": "desactivado", "ok": "OK", "fail": "no funcionó", "pending": "sin respuesta aún",
+        "window_fail": "no se pudo abrir la ventana",
+    },
+    "en": {
+        "head": "DRILL RESULT",
+        "window": "PC screen (red window)", "siren": "Siren through Windows sound",
+        "siren_hint": "plays on the default audio output: speakers, headphones or a Bluetooth "
+                      "speaker paired in Windows",
+        "voice": "Spanish voice", "voice_en": "English voice",
+        "lan": "Phones on the home Wi-Fi",
+        "lan_got": "{n} phone(s) received the alert",
+        "lan_none": "no phone received it: open {url} on the phone (same Wi-Fi), tap "
+                    "'Activar alertas' and keep it open",
+        "mesh": "Other OptiQuake computers", "mesh_got": "answered: {nodes}",
+        "mesh_none": "none answered (they need OptiQuake running with the same key)",
+        "ntfy": "Phone over the internet (ntfy app)", "ntfy_fail": "could not send: {err}",
+        "off": "disabled", "ok": "OK", "fail": "did not work", "pending": "no answer yet",
+        "window_fail": "the window could not open",
+    },
+}
+
 @dataclass
 class Assessment:
     level: str
@@ -171,6 +206,10 @@ class SirenChannel:
         else:
             while time.time() < end:
                 sys.stderr.write("\a"); sys.stderr.flush(); time.sleep(0.5)
+    def report(self, lang):
+        r = REPORT[lang]
+        return r["siren"], True, r["siren_hint"]
+
     def send(self, alert):
         secs = self.seconds if alert.level in (STRONG, LOCAL) else max(3, self.seconds // 4)
         threading.Thread(target=self._play, args=(secs,), daemon=True).start()
@@ -240,6 +279,16 @@ class VoiceChannel:
     def __init__(self, log=None):
         self.log = log or (lambda r: print(json.dumps(r, ensure_ascii=False), flush=True))
         self.thread = None
+        self.result = None  # 0 spoke, 2 no voice for the language
+
+    def report(self, lang):
+        r = REPORT[lang]
+        label = r["voice"] if lang == "es" else r["voice_en"]
+        if self.result == 0:
+            return label, True, r["ok"]
+        if self.result == 2:
+            return label, False, NO_VOICE.get(lang, NO_VOICE["en"])
+        return label, None, r["pending"]
 
     def wait(self, timeout):
         if self.thread:
@@ -269,6 +318,7 @@ class VoiceChannel:
                                       timeout=180).returncode
             except (OSError, subprocess.TimeoutExpired):
                 return
+            self.result = code
             if code == 2:
                 self.log({"notice": NO_VOICE.get(alert.lang, NO_VOICE["en"])})
         self.thread = threading.Thread(target=speak, daemon=True)
@@ -281,10 +331,17 @@ class WindowChannel:
         script = Path(__file__).with_name("alert_window.py")
         payload = dict(alert.to_dict(), ok=TEXT[alert.lang]["ok"])
         try:
-            p = subprocess.Popen([sys.executable, str(script)], stdin=subprocess.PIPE)
-            p.stdin.write(json.dumps(payload).encode("utf-8")); p.stdin.close()
+            self.proc = subprocess.Popen([sys.executable, str(script)], stdin=subprocess.PIPE)
+            self.proc.stdin.write(json.dumps(payload).encode("utf-8")); self.proc.stdin.close()
         except OSError:
-            pass
+            self.proc = None
+
+    def report(self, lang):
+        r = REPORT[lang]
+        proc = getattr(self, "proc", None)
+        if proc is None or proc.poll() not in (None, 0):
+            return r["window"], False, r["window_fail"]
+        return r["window"], True, r["ok"]
 
 class NtfyChannel:
     """Push to a phone through ntfy (https://ntfy.sh). Urgent priority makes the
@@ -292,6 +349,13 @@ class NtfyChannel:
     name = "ntfy"
     def __init__(self, topic, server="https://ntfy.sh"):
         self.topic, self.server = topic, server.rstrip("/")
+        self.error, self.sent = None, False
+
+    def report(self, lang):
+        r = REPORT[lang]
+        if self.error:
+            return r["ntfy"], False, r["ntfy_fail"].format(err=self.error)
+        return r["ntfy"], (True if self.sent else None), (r["ok"] if self.sent else r["pending"])
     def send(self, alert):
         body = json.dumps({
             "topic": self.topic, "title": alert.title, "message": "\n".join(alert.lines),
@@ -303,7 +367,9 @@ class NtfyChannel:
         def post():
             try:
                 urllib.request.urlopen(req, timeout=10).close()
+                self.sent, self.error = True, None
             except Exception as exc:
+                self.error = str(exc)[:120]
                 print(json.dumps({"alert_channel_error": "ntfy", "detail": str(exc)[:200]}),
                       flush=True)
         threading.Thread(target=post, daemon=True).start()
@@ -346,6 +412,7 @@ class AlertCenter:
         self.node = node
         self.detections = []  # (time, node) of recent strong vibrations
         self.last_mesh_alert = None
+        self.drill_acks = []
         self.last_local = None
         self.lock = threading.Lock()
 
@@ -413,7 +480,11 @@ class AlertCenter:
                 self._record(now, node)
             self._check_mesh(now)
         elif kind == "drill":
+            if self.mesh:
+                self.mesh.send("drill_ack", {"to": node})
             self.drill(origin=node)
+        elif kind == "drill_ack" and data.get("to") == self.node:
+            self.drill_acks.append(node)
 
     def on_status(self, status):
         self.log(status)
@@ -442,6 +513,37 @@ class AlertCenter:
                 sources=quake.source, mag=quake.mag, place=quake.place or "?",
                 dist=a.distance_km))
         self.dispatch(alert)
+
+    def drill_report(self):
+        """Which channels delivered the drill: [(label, ok True/False/None, detail)]."""
+        r = REPORT[self.lang]
+        rows = []
+        for ch in self.channels:
+            if hasattr(ch, "report"):
+                rows.append(ch.report(self.lang))
+        names = {getattr(ch, "name", "") for ch in self.channels}
+        if self.mesh:
+            acks = sorted(set(self.drill_acks))
+            rows.append((r["mesh"], bool(acks), r["mesh_got"].format(nodes=", ".join(acks))
+                         if acks else r["mesh_none"]))
+        else:
+            rows.append((r["mesh"], None, r["off"]))
+        for name, key in (("lan", "lan"), ("ntfy", "ntfy")):
+            if name not in names:
+                rows.append((r[key], None, r["off"]))
+        return rows
+
+    def print_drill_report(self, out=None):
+        out = out or sys.stderr
+        r = REPORT[self.lang]
+        rows = self.drill_report()
+        print("\n" + r["head"], file=out)
+        for label, ok, detail in rows:
+            mark = {True: "[OK]", False: "[X] ", None: "[--]"}[ok]
+            print(f"  {mark} {label}: {detail}", file=out)
+        print(file=out, flush=True)
+        self.log({"drill_report": [{"channel": l, "ok": o, "detail": d} for l, o, d in rows]})
+        return rows
 
     def drill(self, origin=None):
         alert = build_local_alert(self.lang, drill=True)
@@ -516,11 +618,14 @@ class LanChannel:
     def __init__(self, port=8765, host="0.0.0.0"):
         from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
         self.state = {"seq": 0, "alert": None, "feeds_online": None}
+        self.clients = {}  # phone IP -> last alert number it has seen
         channel = self
         class Handler(BaseHTTPRequestHandler):
             def do_GET(self):
                 if self.path.split("?")[0] == "/state":
-                    body, ctype = json.dumps(channel.state).encode(), "application/json"
+                    state = channel.state
+                    channel.clients[self.client_address[0]] = state["seq"]
+                    body, ctype = json.dumps(state).encode(), "application/json"
                 elif self.path.split("?")[0] in ("/", "/index.html"):
                     body, ctype = LAN_PAGE.encode("utf-8"), "text/html; charset=utf-8"
                 else:
@@ -544,6 +649,14 @@ class LanChannel:
     def send(self, alert):
         self.state = dict(self.state, seq=self.state["seq"] + 1,
                           alert=dict(alert.to_dict(), lang=alert.lang))
+
+    def report(self, lang):
+        r = REPORT[lang]
+        seq = self.state["seq"]
+        got = [ip for ip, seen in self.clients.items() if seq and seen >= seq]
+        if got:
+            return r["lan"], True, r["lan_got"].format(n=len(got))
+        return r["lan"], False, r["lan_none"].format(url=self.url)
 
     def close(self):
         self.server.shutdown()

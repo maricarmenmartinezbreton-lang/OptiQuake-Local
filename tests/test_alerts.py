@@ -147,7 +147,24 @@ lan.set_status({"feeds_online": False})
 lan.send(qa.build_local_alert())
 st = json.loads(get("/state"))
 assert st["seq"] == 1 and st["alert"]["title"] == "ALERTA DE SISMO" and st["feeds_online"] is False
+r = lan.report("es")
+assert r[1] is True and r[2] == "1 teléfono(s) recibieron la alerta", r
+lan.send(qa.build_local_alert())        # a new alert nobody has fetched yet
+r = lan.report("es")
+assert r[1] is False and lan.url in r[2]
 lan.close()
+
+# drill report: disabled channels are listed so the user knows why nothing arrived
+c = qa.AlertCenter(SD, [Fake()], log=logs.append)
+rows = {label: (ok, detail) for label, ok, detail in c.drill_report()}
+assert rows["Teléfonos por el Wi-Fi de casa"] == (None, "desactivado")
+assert rows["Otros equipos con OptiQuake"] == (None, "desactivado")
+nt = qa.NtfyChannel("t")
+nt.error = "sin internet"
+assert nt.report("es") == ("Celular por internet (app ntfy)", False, "no se pudo enviar: sin internet")
+v = qa.VoiceChannel()
+v.result = 2
+assert v.report("es")[1] is False and "Español" in v.report("es")[2]
 
 # ---- location persistence (offline reuse)
 with tempfile.TemporaryDirectory() as tmp:

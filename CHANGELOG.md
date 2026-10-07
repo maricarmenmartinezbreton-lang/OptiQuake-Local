@@ -3,6 +3,7 @@
 All notable project changes should be recorded here.
 
 ## Unreleased
+- Drills end with a per-channel report (screen, siren, voice, phones on Wi-Fi, other OptiQuake computers, ntfy) saying what delivered the alert, what is disabled, and how to fix what failed; phones and computers that received the drill are counted.
 - Spoken alerts now use an installed voice in the alert's language (classic or modern Windows 10/11 voices) instead of the system default voice, keep accents intact, read naturally (no "·", no spelled-out capitals), and report how to install a Spanish voice when none exists.
 - Experimental earthquake alerts (`--alerts`): official feeds from USGS, EMSC and GFZ GEOFON, merged across agencies and filtered by the user's location (felt/strong-shaking distance estimates), plus immediate camera alerts that keep working offline and are marked confirmed when an official report matches.
 - Alert messages in Spanish and English: "ALERTA DE SISMO", Drop-Cover-Hold-On while shaking, calm evacuation to a safe open area afterwards, tsunami advice for large shallow quakes nearby.

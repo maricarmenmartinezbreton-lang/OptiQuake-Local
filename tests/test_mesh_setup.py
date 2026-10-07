@@ -95,7 +95,18 @@ c.drill()
 assert fm.sent == ["drill"] and f.got[-1].drill
 c.on_peer("sala", "drill", {})
 assert f.got[-1].drill and f.got[-1].lines[1] == "Simulacro iniciado desde: sala."
-assert fm.sent == ["drill"], "a received drill is not re-broadcast"
+assert fm.sent == ["drill", "drill_ack"], "a received drill is answered, not re-broadcast"
+
+# drill answers from other computers appear in the drill report
+c, f, fm = center()
+c.drill()
+c.on_peer("sala", "drill_ack", {"to": "oficina"})
+c.on_peer("cocina", "drill_ack", {"to": "otro-equipo"})  # not for us
+rows = {label: (ok, detail) for label, ok, detail in c.drill_report()}
+assert rows["Otros equipos con OptiQuake"] == (True, "respondieron: sala")
+c2, f2, fm2 = center()
+c2.on_peer("sala", "drill", {})
+assert fm2.sent == ["drill_ack"], "a sensor that receives a drill answers it"
 
 # ---- start with Windows (files only; nothing is executed here)
 with tempfile.TemporaryDirectory() as tmp:
