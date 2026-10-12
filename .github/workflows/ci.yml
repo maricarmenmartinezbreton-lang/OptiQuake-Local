@@ -16,6 +16,8 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: ${{ matrix.python }}
+      - name: Reject accidental literal newline escapes
+        run: python tests/test_text_newlines.py
       - name: Core self-test
         run: python src/optiquake.py --self-test
       - name: Plugin API test
