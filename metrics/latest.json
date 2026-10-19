@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-10-17T14:40:02.574654+00:00",
+  "timestamp_utc": "2026-10-19T17:58:08.441346+00:00",
   "github": {
     "stars": 0,
     "forks": 0,
@@ -11,16 +11,16 @@
     "release_asset_downloads": 0
   },
   "pypi": {
-    "last_day": 1,
+    "last_day": 2,
     "last_month": 257,
-    "last_week": 3
+    "last_week": 9
   },
   "zenodo": {
     "record": 23005112,
     "doi": "10.5281/zenodo.23005112",
     "version": "0.1.2-experimental",
-    "views": 16,
-    "unique_views": 15,
+    "views": 17,
+    "unique_views": 16,
     "downloads": 0,
     "unique_downloads": 0
   }
