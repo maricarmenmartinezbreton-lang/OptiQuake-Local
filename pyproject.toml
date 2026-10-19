@@ -11,7 +11,7 @@ requires-python = ">=3.10"
 license = "AGPL-3.0-only"
 license-files = ["LICENSE", "AUTHORS.md"]
 authors = [{name = "Lic. Juan Esteban Ramírez"}]
-keywords = ["vibration", "webcam", "optical-sensing", "seismic-research", "community-sensing", "plugins", "ai-agent", "open-source"]
+keywords = ["vibration", "webcam", "optical-sensing", "seismic-research", "community-sensing", "plugins", "ai-agent", "open-source", "earthquake-alert", "usgs", "emsc"]
 classifiers = [
   "Programming Language :: Python :: 3",
   "Operating System :: Microsoft :: Windows"
@@ -27,5 +27,5 @@ Issues = "https://github.com/maricarmenmartinezbreton-lang/OptiQuake-Local/issue
 optiquake-local = "optiquake:main"
 
 [tool.setuptools]
-py-modules = ["optiquake", "plugin_api", "plugin_loader"]
+py-modules = ["optiquake", "plugin_api", "plugin_loader", "geo", "quake_feeds", "quake_alerts", "alert_window", "mesh", "autostart", "setup_wizard"]
 package-dir = {"" = "src"}
