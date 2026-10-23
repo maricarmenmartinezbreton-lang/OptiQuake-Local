@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-10-21T16:19:15.697533+00:00",
+  "timestamp_utc": "2026-10-23T16:08:00.068499+00:00",
   "github": {
     "stars": 0,
     "forks": 0,
@@ -11,7 +11,7 @@
     "release_asset_downloads": 0
   },
   "pypi": {
-    "last_day": 7,
+    "last_day": 1,
     "last_month": 257,
     "last_week": 7
   },
