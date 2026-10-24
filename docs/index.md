@@ -32,9 +32,14 @@ See the repository README, validation notes and contribution guide for installat
 ## Install
 `python -m pip install optiquake-local`
 
-PyPI: https://pypi.org/project/optiquake-local/
+## Official project records and distribution
+- [Source code, issues and contributions (GitHub)](https://github.com/maricarmenmartinezbreton-lang/OptiQuake-Local)
+- [Installable Python package (PyPI)](https://pypi.org/project/optiquake-local/)
+- [Citable project archive (Zenodo concept DOI)](https://doi.org/10.5281/zenodo.23004638)
+- [Archived version 0.1.2 (Zenodo version DOI)](https://doi.org/10.5281/zenodo.23005112)
+- [Public reach and download metrics](https://github.com/maricarmenmartinezbreton-lang/OptiQuake-Local/blob/main/METRICS.md)
 
-Project DOI: https://doi.org/10.5281/zenodo.23004638
+For technical discovery: experimental optical vibration monitoring, webcam-based motion sensing, local vibration-event detection and open-source Python plugins. These are research and software-development terms, **not validated earthquake detection or guaranteed warning capabilities**.
 
 ## Languages
 - [English](index.md)
