@@ -4,6 +4,8 @@
 
 Experimental local optical vibration detection using an ordinary high-frame-rate webcam.
 
+**Project website and documentation:** [OptiQuake Local (GitHub Pages)](https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/) · [Python package (PyPI)](https://pypi.org/project/optiquake-local/) · [Citable version archive (Zenodo)](https://doi.org/10.5281/zenodo.23005112). These links describe experimental optical vibration monitoring; they do not imply certified earthquake detection or guaranteed alerts.
+
 **Live public reach:** [METRICS.md](METRICS.md) tracks GitHub traffic, PyPI downloads and Zenodo views/downloads every two days.
 
 **Languages:** [English](docs/index.md) · [Español](docs/es.md) · [Português](docs/pt.md) · [Français](docs/fr.md) · [Deutsch](docs/de.md) · [Italiano](docs/it.md) · [简体中文](docs/zh-cn.md) · [日本語](docs/ja.md) · [한국어](docs/ko.md) · [العربية](docs/ar.md) · [हिन्दी](docs/hi.md) · [Русский](docs/ru.md)
