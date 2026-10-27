@@ -1,6 +1,6 @@
 # Public reach metrics
 
-Updated: **2026-10-25T15:16:39.503733+00:00**
+Updated: **2026-10-27T17:02:30.327001+00:00**
 
 These are public/platform-reported counters and may include automated traffic. They are not scientific validation metrics.
 
@@ -14,11 +14,11 @@ These are public/platform-reported counters and may include automated traffic. T
 | GitHub clones (14d) | None |
 | GitHub unique cloners (14d) | None |
 | GitHub release asset downloads | 0 |
-| PyPI downloads (last day) | 5 |
-| PyPI downloads (last week) | 21 |
+| PyPI downloads (last day) | 0 |
+| PyPI downloads (last week) | 19 |
 | PyPI downloads (last month) | 257 |
-| Zenodo views | 17 |
-| Zenodo unique views | 16 |
+| Zenodo views | 19 |
+| Zenodo unique views | 18 |
 | Zenodo downloads | 0 |
 | Zenodo unique downloads | 0 |
 
