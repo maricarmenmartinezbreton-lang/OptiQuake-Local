@@ -1,6 +1,6 @@
 # Public reach metrics
 
-Updated: **2026-10-27T17:02:30.327001+00:00**
+Updated: **2026-10-29T17:47:05.452450+00:00**
 
 These are public/platform-reported counters and may include automated traffic. They are not scientific validation metrics.
 
@@ -17,8 +17,8 @@ These are public/platform-reported counters and may include automated traffic. T
 | PyPI downloads (last day) | 0 |
 | PyPI downloads (last week) | 19 |
 | PyPI downloads (last month) | 257 |
-| Zenodo views | 19 |
-| Zenodo unique views | 18 |
+| Zenodo views | 22 |
+| Zenodo unique views | 21 |
 | Zenodo downloads | 0 |
 | Zenodo unique downloads | 0 |
 
