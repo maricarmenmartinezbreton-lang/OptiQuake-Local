@@ -2,6 +2,18 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "OptiQuake Local"
 type: software
+abstract: >-
+  Experimental open-source platform for local optical vibration monitoring
+  using compatible webcams. It reports vibration events and supports Python
+  plugins and AI-agent integrations. It is not a certified earthquake detector
+  or a guaranteed early-warning system.
+keywords:
+  - optical vibration monitoring
+  - webcam sensing
+  - experimental vibration detection
+  - local sensing
+  - Python plugins
+  - open-source software
 authors:
   - given-names: "Juan Esteban"
     family-names: "Ramírez"
@@ -10,4 +22,4 @@ date-released: "2026-09-27"
 license: AGPL-3.0
 doi: 10.5281/zenodo.23005112
 repository-code: "https://github.com/maricarmenmartinezbreton-lang/OptiQuake-Local"
-url: "https://github.com/maricarmenmartinezbreton-lang/OptiQuake-Local"
+url: "https://maricarmenmartinezbreton-lang.github.io/OptiQuake-Local/"
