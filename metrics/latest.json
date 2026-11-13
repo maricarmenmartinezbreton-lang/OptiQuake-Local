@@ -1,9 +1,9 @@
 {
-  "timestamp_utc": "2026-11-11T19:00:28.855907+00:00",
+  "timestamp_utc": "2026-11-13T18:56:56.910031+00:00",
   "github": {
     "stars": 0,
     "forks": 0,
-    "watchers": 1,
+    "watchers": 0,
     "views_14d": null,
     "unique_views_14d": null,
     "clones_14d": null,
@@ -12,8 +12,8 @@
   },
   "pypi": {
     "last_day": 0,
-    "last_month": 257,
-    "last_week": 4
+    "last_month": 44,
+    "last_week": 1
   },
   "zenodo": {
     "record": 23005112,
