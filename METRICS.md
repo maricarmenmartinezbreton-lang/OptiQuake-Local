@@ -1,6 +1,6 @@
 # Public reach metrics
 
-Updated: **2026-11-13T18:56:56.910031+00:00**
+Updated: **2026-11-15T18:13:26.097351+00:00**
 
 These are public/platform-reported counters and may include automated traffic. They are not scientific validation metrics.
 
